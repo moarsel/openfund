@@ -7,24 +7,29 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route } from '@redwoodjs/router'
+import { Router, Route, Private } from '@redwoodjs/router'
 
 const Routes = () => {
   return (
     <Router>
-      <Route path="/users/new" page={NewUserPage} name="newUser" />
-      <Route path="/users/{id:Int}/edit" page={EditUserPage} name="editUser" />
-      <Route path="/users/{id:Int}" page={UserPage} name="user" />
-      <Route path="/users" page={UsersPage} name="users" />
-      <Route path="/donations/new" page={NewDonationPage} name="newDonation" />
-      <Route path="/donations/{id:Int}/edit" page={EditDonationPage} name="editDonation" />
-      <Route path="/donations/{id:Int}" page={DonationPage} name="donation" />
-      <Route path="/donations" page={DonationsPage} name="donations" />
-      <Route path="/projects/new" page={NewProjectPage} name="newProject" />
-      <Route path="/projects/{id:Int}/edit" page={EditProjectPage} name="editProject" />
-      <Route path="/projects/{id:Int}" page={ProjectPage} name="project" />
-      <Route path="/projects" page={ProjectsPage} name="projects" />
+      <Route path="/project/{id:Int}" page={ProjectPage} name="project" />
+      <Route path="/login" page={LoginPage} name="login" />
+      <Route path="/signup" page={SignupPage} name="signup" />
       <Route path="/" page={HomePage} name="home" />
+      <Private unauthenticated="home" role="admin">
+        <Route path="/admin/users/new" page={AdminNewUserPage} name="newUser" />
+        <Route path="/admin/users/{id:Int}/edit" page={AdminEditUserPage} name="editUser" />
+        <Route path="/admin/users/{id:Int}" page={AdminUserPage} name="user" />
+        <Route path="/admin/users" page={AdminUsersPage} name="users" />
+        <Route path="/admin/donations/new" page={AdminNewDonationPage} name="newDonation" />
+        <Route path="/admin/donations/{id:Int}/edit" page={AdminEditDonationPage} name="editDonation" />
+        <Route path="/admin/donations/{id:Int}" page={AdminDonationPage} name="donation" />
+        <Route path="/admin/donations" page={AdminDonationsPage} name="donations" />
+        <Route path="/admin/projects/new" page={AdminNewProjectPage} name="newProject" />
+        <Route path="/admin/projects/{id:Int}/edit" page={AdminEditProjectPage} name="editProject" />
+        <Route path="/admin/projects/{id:Int}" page={AdminProjectPage} name="project" />
+        <Route path="/admin/projects" page={AdminProjectsPage} name="projects" />
+      </Private>
       <Route notfound page={NotFoundPage} />
     </Router>
   )

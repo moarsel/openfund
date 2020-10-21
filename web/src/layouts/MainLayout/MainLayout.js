@@ -1,18 +1,9 @@
-import { Link, routes } from '@redwoodjs/router'
+import Navigation from 'src/components/Navigation'
 
 const MainLayout = ({ children }) => {
   return (
     <>
-      <header>
-        <h1>Main nav</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to={routes.home()}>Home</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Navigation />
       <main>{children}</main>
     </>
   )

@@ -1,6 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
-import ProjectsCell from 'src/components/ProjectsCell'
+import ProjectsCell from 'src/components/Projects/ProjectsCell'
 
 const HomePage = () => {
   return (
