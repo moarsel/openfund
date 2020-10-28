@@ -3,6 +3,9 @@ export const schema = gql`
     id: Int!
     email: String!
     name: String
+    authId: String!
+    customerId: String!
+    customer: Customer
     Donation: [Donation]!
   }
 
@@ -14,11 +17,14 @@ export const schema = gql`
   input CreateUserInput {
     email: String!
     name: String
+    authId: String!
+    customerId: String
   }
 
   input UpdateUserInput {
     email: String
     name: String
+    customerId: String
   }
 
   type Mutation {

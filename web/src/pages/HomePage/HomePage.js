@@ -1,10 +1,10 @@
 import { Link, routes } from '@redwoodjs/router'
-import MainLayout from 'src/layouts/MainLayout/MainLayout'
+import GlobalLayout from 'src/layouts/GlobalLayout/GlobalLayout'
 import ProjectsCell from 'src/components/Projects/ProjectsCell'
 
 const HomePage = () => {
   return (
-    <MainLayout>
+    <GlobalLayout>
       <h1>HomePage</h1>
       <p>
         <ProjectsCell />
@@ -13,7 +13,7 @@ const HomePage = () => {
         My default route is named <tt>home</tt>, link to me with `
         <Link to={routes.home()}>Home</Link>`
       </p>
-    </MainLayout>
+    </GlobalLayout>
   )
 }
 

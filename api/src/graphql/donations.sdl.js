@@ -3,7 +3,7 @@ export const schema = gql`
     id: Int!
     amount: Int!
     donationTime: DateTime!
-    transactionId: Int!
+    transactionId: String!
     donor: User!
     recipient: Project!
     userId: Int!
@@ -18,7 +18,7 @@ export const schema = gql`
   input CreateDonationInput {
     amount: Int!
     donationTime: DateTime!
-    transactionId: Int!
+    transactionId: String!
     userId: Int!
     projectId: Int!
   }
@@ -26,7 +26,7 @@ export const schema = gql`
   input UpdateDonationInput {
     amount: Int
     donationTime: DateTime
-    transactionId: Int
+    transactionId: String
     userId: Int
     projectId: Int
   }

@@ -24,7 +24,7 @@ const NewDonation = () => {
 
   const onSave = (input) => {
     const castInput = Object.assign(input, {
-      transactionId: parseInt(input.transactionId),
+      transactionId: input.transactionId,
       userId: parseInt(input.userId),
       projectId: parseInt(input.projectId),
     })

@@ -20,7 +20,6 @@ const ProjectsList = ({ projects }) => {
           <Link
             to={routes.project({ id: project.id })}
             title={'Show project ' + project.id + ' detail'}
-            className="rw-button rw-button-small"
           >
             Show
           </Link>

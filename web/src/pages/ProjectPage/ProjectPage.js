@@ -1,14 +1,11 @@
-import { Link, routes } from '@redwoodjs/router'
-import ProjectCell from 'src/components/Projects/ProjectsCell'
-const ProjectPage = () => {
+import { Link, routes, navigate } from '@redwoodjs/router'
+import ProjectCell from 'src/components/Project/ProjectCell'
+
+const ProjectPage = ({ id }) => {
   return (
     <>
       <h1>ProjectPage</h1>
-      <ProjectCell />
-      <p>
-        My default route is named <tt>project</tt>, link to me with `
-        <Link to={routes.project()}>Project</Link>`
-      </p>
+      <ProjectCell id={id} />
     </>
   )
 }

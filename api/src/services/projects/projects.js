@@ -1,5 +1,5 @@
 import { db } from 'src/lib/db'
-import { foreignKeyReplacement } from '../utils'
+import { requireAuth } from 'src/lib/auth'
 
 export const projects = () => {
   return db.project.findMany()
@@ -12,19 +12,22 @@ export const project = ({ id }) => {
 }
 
 export const createProject = ({ input }) => {
+  requireAuth()
   return db.project.create({
-    data: foreignKeyReplacement(input),
+    data: input,
   })
 }
 
 export const updateProject = ({ id, input }) => {
+  requireAuth()
   return db.project.update({
-    data: foreignKeyReplacement(input),
+    data: input,
     where: { id },
   })
 }
 
 export const deleteProject = ({ id }) => {
+  requireAuth()
   return db.project.delete({
     where: { id },
   })

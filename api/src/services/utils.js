@@ -11,3 +11,18 @@ export const foreignKeyReplacement = (input) => {
   })
   return output
 }
+
+export function isDefined(value) {
+  return value !== null && typeof value !== 'undefined'
+}
+
+export function connectRelations(data, relations) {
+  const d = { ...data } // it would be better to deep clone the data
+
+  Object.keys(relations).forEach((key) => {
+    if (Object.values(relations[key]).filter(isDefined).length > 0) {
+      d[key] = { connect: relations[key] }
+    }
+  })
+  return d
+}

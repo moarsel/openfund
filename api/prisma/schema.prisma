@@ -1,35 +1,31 @@
-datasource DS {
-  // optionally set multiple providers
-  // example: provider = ["sqlite", "postgresql"]
-  provider = ["sqlite", "postgresql"]
-
-  url = env("DATABASE_URL")
-}
-
 generator client {
   provider      = "prisma-client-js"
-  binaryTargets = "native"
+  binaryTargets = ["native"]
 }
 
-// Define your own datamodels here and run `yarn redwood db save` to create
-// migrations for them.
+datasource DS {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
 
 model User {
-  id       Int        @id @default(autoincrement())
-  email    String     @unique
-  name     String?
-  Donation Donation[]
+  id         Int        @id @default(autoincrement())
+  authId     String?    @unique
+  customerId String?    @unique
+  email      String     @unique
+  name       String?
+  Donation   Donation[]
 }
 
 model Donation {
   id            Int      @id @default(autoincrement())
   amount        Int
   donationTime  DateTime @default(now())
-  transactionId Int
-  donor         User     @relation(fields: [userId], references: [id])
-  recipient     Project  @relation(fields: [projectId], references: [id])
+  transactionId String
   userId        Int
   projectId     Int
+  recipient     Project  @relation(fields: [projectId], references: [id])
+  donor         User     @relation(fields: [userId], references: [id])
 }
 
 model Project {
@@ -42,7 +38,7 @@ model Project {
   coverImage       String
   stripeId         String
   goalAmount       Int
-  donations        Donation[]
   videoLink        String
   websiteLink      String
+  donations        Donation[]
 }

@@ -1,6 +1,6 @@
 import Navigation from 'src/components/Navigation'
 
-const MainLayout = ({ children }) => {
+const GlobalLayout = ({ children }) => {
   return (
     <>
       <Navigation />
@@ -9,4 +9,4 @@ const MainLayout = ({ children }) => {
   )
 }
 
-export default MainLayout
+export default GlobalLayout

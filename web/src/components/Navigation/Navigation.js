@@ -11,8 +11,8 @@ const Navigation = () => {
           <LogoutBtn />
         ) : (
           <>
-            <Link to={routes.signup()}>Sign Up</Link>
-            <Link to={routes.login()}>Log In</Link>
+            <Link to={routes.signUp()}>Sign Up</Link>
+            <Link to={routes.signIn()}>Log In</Link>
           </>
         )}
       </nav>

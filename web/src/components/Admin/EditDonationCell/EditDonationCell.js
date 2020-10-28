@@ -38,7 +38,7 @@ export const Success = ({ donation }) => {
 
   const onSave = (input, id) => {
     const castInput = Object.assign(input, {
-      transactionId: parseInt(input.transactionId),
+      transactionId: input.transactionId,
       userId: parseInt(input.userId),
       projectId: parseInt(input.projectId),
     })
