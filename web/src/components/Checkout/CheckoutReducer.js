@@ -52,6 +52,10 @@ export const CheckoutReducer = (state, action) => {
       return initialState
     }
 
+    case 'SET_ERROR': {
+      return { ...state, loading: false, error: action.payload }
+    }
+
     default:
       return state
   }

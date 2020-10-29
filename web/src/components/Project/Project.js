@@ -80,7 +80,7 @@ const Project = ({ project }) => {
             </tr>
             <tr>
               <th>Donations</th>
-              <td>{JSON.stringify(project.donations)}</td>
+              <td>{JSON.stringify(project)}</td>
             </tr>
           </tbody>
         </table>

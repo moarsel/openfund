@@ -10,6 +10,8 @@ import { createSetupIntent } from 'src/services/setupIntents/setupIntents'
 import { paymentMethod } from 'src/services/paymentMethods/paymentMethods'
 import { createPaymentIntent } from 'src/services/orders/orders'
 import { createDonation } from 'src/services/donations/donations'
+import { projects, updateAllProjects } from '../projects/projects'
+import { calculateMatchingAmounts } from '../utils'
 
 // SET CUSTOMER
 export const setCustomer = async ({ input }) => {
@@ -42,6 +44,14 @@ export const setPayment = async ({ paymentMethodId }) => {
 export const placeOrder = async ({ input }) => {
   const paymentIntent = await createPaymentIntent(input)
   const donation = await createDonationFromPaymentIntent(input, paymentIntent)
+  const allDonations = await projects({ include: { donations: true } })
+  // TODO: matching pool is hardcoded
+  const matchingPoolSize = 1000
+  const projectContributions = calculateMatchingAmounts(
+    allDonations,
+    matchingPoolSize
+  )
+  await updateAllProjects(projectContributions)
   return { paymentIntent, donation }
 }
 

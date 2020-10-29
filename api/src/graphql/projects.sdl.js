@@ -9,9 +9,11 @@ export const schema = gql`
     coverImage: String!
     stripeId: String!
     goalAmount: Int!
-    donations: [Donation]!
     videoLink: String!
     websiteLink: String!
+    currentMatchingAmount: Int!
+    contributorCount: Int!
+    contributionsTotal: Int!
   }
 
   type Query {
@@ -30,6 +32,9 @@ export const schema = gql`
     goalAmount: Int!
     videoLink: String!
     websiteLink: String!
+    currentMatchingAmount: Int!
+    contributorCount: Int!
+    contributionsTotal: Int!
   }
 
   input UpdateProjectInput {
@@ -43,6 +48,9 @@ export const schema = gql`
     goalAmount: Int
     videoLink: String
     websiteLink: String
+    currentMatchingAmount: Int!
+    contributorCount: Int!
+    contributionsTotal: Int!
   }
 
   type Mutation {

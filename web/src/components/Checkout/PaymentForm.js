@@ -47,7 +47,9 @@ export const PaymentForm = () => {
       setState({ ...state, loading: true })
     } else {
       setState({ ...state, loading: false })
-      placeOrder({ paymentMethodId: setupIntent.payment_method })
+      placeOrder({
+        paymentMethodId: setupIntent.payment_method,
+      })
     }
   }
 

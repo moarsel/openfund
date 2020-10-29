@@ -14,9 +14,9 @@ export const QUERY = gql`
       goalAmount
       videoLink
       websiteLink
-      donations {
-        amount
-      }
+      currentMatchingAmount
+      contributorCount
+      contributionsTotal
     }
   }
 `

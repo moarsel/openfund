@@ -124,6 +124,7 @@ export const CheckoutProvider = ({ children }) => {
         throw new Error('PaymentIntent status not succeeded')
       }
     } catch (e) {
+      setLoading(false)
       dispatch({
         type: 'SET_ERROR',
         payload: 'Failed to place order',

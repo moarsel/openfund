@@ -1,12 +1,11 @@
 generator client {
-  provider        = "prisma-client-js"
-  binaryTargets   = ["native"]
-  previewFeatures = ["transactionApi"]
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
 }
 
 datasource DS {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model User {
