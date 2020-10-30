@@ -1,18 +1,12 @@
-import { Link, routes } from '@redwoodjs/router'
 import GlobalLayout from 'src/layouts/GlobalLayout/GlobalLayout'
 import ProjectsCell from 'src/components/Projects/ProjectsCell'
+import { PageHeading } from 'src/components/UI'
 
 const HomePage = () => {
   return (
     <GlobalLayout>
-      <h1>HomePage</h1>
-      <p>
-        <ProjectsCell />
-      </p>
-      <p>
-        My default route is named <tt>home</tt>, link to me with `
-        <Link to={routes.home()}>Home</Link>`
-      </p>
+      <PageHeading className="mt-8 mb-3">Projects</PageHeading>
+      <ProjectsCell />
     </GlobalLayout>
   )
 }

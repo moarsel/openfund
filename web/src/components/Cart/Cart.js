@@ -1,6 +1,7 @@
 import { navigate, routes, Link } from '@redwoodjs/router'
 
 import { useCart, CartItem, CartTotal } from 'src/components/Cart'
+import { Button } from '../UI/Button/Button'
 
 export const Cart = () => {
   const { cart, clearCartItems } = useCart()
@@ -20,10 +21,10 @@ export const Cart = () => {
       <div className="cart-footer">
         <CartTotal label="Subtotal:" />
         <div className="cart-footer-actions">
-          <button onClick={() => navigate(routes.checkout())}>Checkout</button>{' '}
-          <button onClick={() => clearCartItems()} className="btn-subdued">
+          <Button onClick={() => navigate(routes.checkout())}>Checkout</Button>{' '}
+          <Button onClick={() => clearCartItems()} className="btn-subdued">
             Clear Cart
-          </button>
+          </Button>
         </div>
       </div>
     </>

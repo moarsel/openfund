@@ -6,6 +6,7 @@ import { CARD_ELEMENT_OPTIONS } from 'src/lib/stripe'
 import { useCheckout, PHASE } from 'src/components/Checkout'
 
 import { Loader } from '../UI'
+import { Button } from '../UI/Button/Button'
 
 export const PaymentForm = () => {
   const stripe = useStripe()
@@ -54,7 +55,7 @@ export const PaymentForm = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit} className="has-block-loader">
+    <Form onSubmit={onSubmit} className="space-y-4 has-block-loader ">
       {state.loading && <Loader type="BLOCK" />}
       {state.error && <p className="form-error">{state.error}</p>}
       <h4 style={{ paddingBottom: '0' }}>Payment Method</h4>
@@ -77,9 +78,9 @@ export const PaymentForm = () => {
         >
           Back to Shipping Method
         </button>
-        <Submit className="btn" disabled={state.loading}>
+        <Button type="submit" disabled={state.loading}>
           Submit Order and Pay
-        </Submit>
+        </Button>
       </div>
     </Form>
   )

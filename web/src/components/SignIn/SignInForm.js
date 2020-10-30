@@ -4,16 +4,16 @@ import {
   TextField,
   PasswordField,
   FieldError,
-  Submit,
 } from '@redwoodjs/forms'
 
 import { Loader } from '../UI'
+import { Button } from '../UI/Button/Button'
 
 export const SignInForm = ({ onSubmit, loading, error }) => (
   <Form
     onSubmit={onSubmit}
     validation={{ mode: 'onBlur' }}
-    className="has-block-loader"
+    className="space-y-4 has-block-loader"
   >
     {loading && <Loader type="BLOCK" />}
     {error && <p className="form-error">{error}</p>}
@@ -52,9 +52,9 @@ export const SignInForm = ({ onSubmit, loading, error }) => (
       <FieldError name="password" className="field-error" />
     </div>
     <div className="field">
-      <Submit className="btn" disabled={loading}>
-        Sign In
-      </Submit>
+      <Button type="submit" disabled={loading}>
+        Log In
+      </Button>
     </div>
   </Form>
 )

@@ -1,4 +1,5 @@
 import { useCart, CartProduct } from 'src/components/Cart'
+import { Button } from '../UI/Button/Button'
 
 export const CartItem = ({ item }) => {
   const { updateItemAmount, deleteItem } = useCart()
@@ -22,12 +23,12 @@ export const CartItem = ({ item }) => {
             onChange={(e) => onChange(e.currentTarget.value)}
           />
         </div>
-        <button
+        <Button
           onClick={() => deleteItem({ id: item.id })}
           className="btn-subdued"
         >
           Remove
-        </button>
+        </Button>
       </div>
     </div>
   )

@@ -1,2 +1,3 @@
 import { Loader } from './Loader'
-export { Loader }
+import { PageHeading } from './Typography/PageHeading'
+export { Loader, PageHeading }

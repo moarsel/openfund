@@ -1,12 +1,11 @@
-import { Link, routes, navigate } from '@redwoodjs/router'
 import ProjectCell from 'src/components/Project/ProjectCell'
+import { GlobalLayout } from 'src/layouts'
 
 const ProjectPage = ({ id }) => {
   return (
-    <>
-      <h1>ProjectPage</h1>
+    <GlobalLayout>
       <ProjectCell id={id} />
-    </>
+    </GlobalLayout>
   )
 }
 

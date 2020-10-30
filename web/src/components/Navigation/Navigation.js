@@ -1,21 +1,25 @@
-import { Link, routes } from '@redwoodjs/router'
+import { routes } from '@redwoodjs/router'
 import { useAuth } from '@redwoodjs/auth'
 import LogoutBtn from 'src/components/LogoutBtn/LogoutBtn'
+import { Navbar } from '../UI/Navigation/NavBar'
+import { Navlink } from '../UI/Navigation/NavLink'
 
 const Navigation = () => {
   const { isAuthenticated } = useAuth()
+  const sideMenu = isAuthenticated ? (
+    <LogoutBtn />
+  ) : (
+    <>
+      <Navlink to={routes.signUp()}>Sign Up</Navlink>
+      <Navlink to={routes.signIn()}>Log In</Navlink>
+    </>
+  )
   return (
     <header>
-      <nav>
-        {isAuthenticated ? (
-          <LogoutBtn />
-        ) : (
-          <>
-            <Link to={routes.signUp()}>Sign Up</Link>
-            <Link to={routes.signIn()}>Log In</Link>
-          </>
-        )}
-      </nav>
+      <Navbar utilitySection={sideMenu}>
+        <Navlink to="/">Projects</Navlink>
+        <Navlink to="/about">How it works</Navlink>
+      </Navbar>
     </header>
   )
 }

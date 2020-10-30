@@ -1,5 +1,8 @@
 import { navigate, routes } from '@redwoodjs/router'
 import { useCart } from 'src/components/Cart/CartContext'
+import { PageHeading } from '../UI'
+import { Button } from '../UI/Button/Button'
+import { Card } from '../UI/Card/Card'
 
 const Project = ({ project }) => {
   const { addItem } = useCart()
@@ -23,69 +26,45 @@ const Project = ({ project }) => {
   }
 
   return (
-    <>
-      <div className="rw-segment">
-        <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">
-            Project {project.id} Detail
-          </h2>
-        </header>
-        <button onClick={() => handleSubmit(20)}>Add to cart</button>
-
-        <table className="rw-table">
-          <tbody>
-            <tr>
-              <th>Id</th>
-              <td>{project.id}</td>
-            </tr>
-            <tr>
-              <th>Name</th>
-              <td>{project.name}</td>
-            </tr>
-            <tr>
-              <th>Owner email</th>
-              <td>{project.ownerEmail}</td>
-            </tr>
-            <tr>
-              <th>Logo</th>
-              <td>{project.logo}</td>
-            </tr>
-            <tr>
-              <th>Short description</th>
-              <td>{project.shortDescription}</td>
-            </tr>
-            <tr>
-              <th>Long description</th>
-              <td>{project.longDescription}</td>
-            </tr>
-            <tr>
-              <th>Cover image</th>
-              <td>{project.coverImage}</td>
-            </tr>
-            <tr>
-              <th>Stripe id</th>
-              <td>{project.stripeId}</td>
-            </tr>
-            <tr>
-              <th>Goal amount</th>
-              <td>{project.goalAmount}</td>
-            </tr>
-            <tr>
-              <th>Video link</th>
-              <td>{project.videoLink}</td>
-            </tr>
-            <tr>
-              <th>Website link</th>
-              <td>{project.websiteLink}</td>
-            </tr>
-            <tr>
-              <th>Donations</th>
-              <td>{JSON.stringify(project)}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div className="relative grid grid-cols-1 gap-4 md:grid-cols-3 justify-items-auto">
+      <div className="col-span-2">
+        <img src={project.coverImage} alt="project image" className="w-full" />
+        <PageHeading>{project.name} </PageHeading>
+        <p>{project.shortDescription}</p>
+        <p>{project.longDescription}</p>
+        {project.websiteLink && (
+          <p>
+            Learn more at the <a href={project.websiteLink}>project website</a>
+          </p>
+        )}
+        {project.videoLink && (
+          <iframe
+            className="w-full"
+            src={`project.videoLink`}
+            frameBorder="0"
+          />
+        )}
       </div>
-    </>
+      <Card className="sticky top-0 self-start mt-8">
+        <div className="flex flex-wrap my-3 text-center text-gray-700 justify-stretch">
+          <div className="w-1/3">
+            <div className="text-2xl">{project.contributorCount}</div>
+            <p>Contributors</p>
+          </div>
+          <div className="w-1/3">
+            <div className="text-2xl">${project.goalAmount}</div>
+            <p>Goal</p>
+          </div>
+          <div className="w-1/3">
+            <div className="text-2xl">${project.currentMatchingAmount}</div>
+            <p>Current Matching Amount</p>
+          </div>
+        </div>
+        <Button className="w-full" onClick={() => handleSubmit(20)}>
+          Contribute $20
+        </Button>
+      </Card>
+    </div>
   )
 }
 
