@@ -5,6 +5,10 @@ module.exports = {
   },
   purge: [],
   theme: {
+    fontFamily: {
+      display: ['"Messer Condensed"', 'sans-serif'],
+      body: ['"Helvetica Neue"', 'sans-serif'],
+    },
     extend: {
       colors: {
         gray: {

@@ -24,6 +24,7 @@ export const schema = gql`
 
   input PlaceOrderInput {
     customerId: String!
+    customerEmail: String!
     paymentMethodId: String!
     cart: CartInput!
   }

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
-import { Form, Label, Submit } from '@redwoodjs/forms'
+import { Form, Label } from '@redwoodjs/forms'
 
 import { CARD_ELEMENT_OPTIONS } from 'src/lib/stripe'
 import { useCheckout, PHASE } from 'src/components/Checkout'
 
-import { Loader } from '../UI'
+import { Lead, Loader } from '../UI'
 import { Button } from '../UI/Button/Button'
 
 export const PaymentForm = () => {
@@ -21,6 +21,18 @@ export const PaymentForm = () => {
     setIntent()
   }, [])
 
+  useEffect(() => {
+    if (checkout.error) {
+      setState((state) => ({
+        ...state,
+        error: checkout.error,
+        loading: false,
+      }))
+    } else {
+      setState((state) => ({ ...state, error: null, loading: false }))
+    }
+  }, [checkout.error])
+
   const onSubmit = async () => {
     if (!stripe || !elements) {
       setState({
@@ -31,25 +43,32 @@ export const PaymentForm = () => {
       return
     }
     setState({ ...state, error: null, loading: true })
-    const cardElement = elements.getElement(CardElement)
-    // create stripe payment method
-    const { error, setupIntent } = await stripe.confirmCardSetup(
-      checkout.setupIntent.clientSecret,
-      {
-        payment_method: {
-          card: cardElement,
+
+    if (checkout.setupIntent.status === 'requires_payment_method') {
+      const cardElement = elements.getElement(CardElement)
+      const { error, setupIntent } = await stripe.confirmCardSetup(
+        checkout.setupIntent.clientSecret,
+        {
+          payment_method: {
+            card: cardElement,
+          },
         },
-      },
-      { handleActions: false }
-    )
-    if (error) {
-      setState({ ...state, error: error.message, loading: false })
-    } else if (setupIntent.status === 'requires_action') {
-      setState({ ...state, loading: true })
+        { handleActions: false }
+      )
+
+      if (error) {
+        setState({ ...state, error: error.message, loading: false })
+      } else if (checkout.setupIntent.status === 'requires_action') {
+        setState({ ...state, loading: true })
+      }
+      setIntent(setupIntent)
+      placeOrder({
+        paymentMethodId: setupIntent.payment_method,
+      })
     } else {
       setState({ ...state, loading: false })
       placeOrder({
-        paymentMethodId: setupIntent.payment_method,
+        paymentMethodId: checkout.setupIntent.payment_method,
       })
     }
   }
@@ -58,7 +77,7 @@ export const PaymentForm = () => {
     <Form onSubmit={onSubmit} className="space-y-4 has-block-loader ">
       {state.loading && <Loader type="BLOCK" />}
       {state.error && <p className="form-error">{state.error}</p>}
-      <h4 style={{ paddingBottom: '0' }}>Payment Method</h4>
+      <Lead as="h2">Payment Method</Lead>
       <div className="field">
         <Label>Card</Label>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
@@ -69,15 +88,14 @@ export const PaymentForm = () => {
         instructions to the financial institution that issued your card to take
         payment from your account.
       </p>
-      <div className="field">
-        <button
-          className="btn btn-subdued"
-          type="button"
-          style={{ marginRight: '1rem' }}
+      <div className="flex flex-wrap items-start">
+        <Button
+          variant="secondary"
+          className="mb-3 mr-3"
           onClick={() => setPhase(PHASE.SET_SHIPPING)}
         >
-          Back to Shipping Method
-        </button>
+          Back to Billing Details
+        </Button>
         <Button type="submit" disabled={state.loading}>
           Submit Order and Pay
         </Button>

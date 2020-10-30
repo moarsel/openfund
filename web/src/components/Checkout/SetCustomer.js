@@ -1,6 +1,7 @@
 import { useCheckout } from 'src/components/Checkout'
 
 import { SignInForm } from '../SignIn/SignInForm'
+// import { SignUpForm } from '../SignUp/SignUpForm'
 import { useSignIn } from '../SignIn/hooks'
 import { Loader } from '../UI'
 
@@ -21,14 +22,7 @@ export const SetCustomer = () => {
         <div className="options-item options-item-signin">
           <SignInForm onSubmit={onSubmit} loading={loading} error={error} />
         </div>
-        <div className="options-item options-item-guest">
-          <button
-            type="button"
-            onClick={() => setCustomer({ customerSource: 'ANON' })}
-          >
-            Continue as Guest
-          </button>
-        </div>
+        <div className="options-item options-item-signin"></div>
       </div>
     </div>
   )

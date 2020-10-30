@@ -9,11 +9,10 @@ import {
   TextField,
   PasswordField,
   FieldError,
-  Submit,
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 
-import { GlobalLayout } from 'src/layouts'
+import { GlobalLayout, SimpleLayout } from 'src/layouts'
 import { PageHeading } from 'src/components/UI'
 import { Button } from 'src/components/UI/Button/Button'
 
@@ -61,81 +60,76 @@ const SignUpPage = () => {
 
   return (
     <GlobalLayout>
-      <div className="flex items-center justify-center px-4 py-8 bg-gray-50 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md">
-          <PageHeading className="mb-5">Sign Up</PageHeading>
-          <Form
-            formMethods={formMethods}
-            onSubmit={onSubmit}
-            className="space-y-4"
-          >
-            {formError && <p className="form-error">{formError}</p>}
-            <FormError
-              error={error}
-              wrapperClassName="form-error-wrapper"
-              titleClassName="form-error-title"
-              listClassName="form-error-list"
+      <SimpleLayout>
+        <PageHeading className="mb-5">Sign Up</PageHeading>
+        <Form
+          formMethods={formMethods}
+          onSubmit={onSubmit}
+          className="space-y-4"
+        >
+          {formError && <p className="form-error">{formError}</p>}
+          <FormError
+            error={error}
+            wrapperClassName="form-error-wrapper"
+            titleClassName="form-error-title"
+            listClassName="form-error-list"
+          />
+          <div className="field">
+            <Label name="email" errorClassName="label-error">
+              Email
+            </Label>
+            <TextField
+              name="email"
+              validation={{
+                required: 'Email is required.',
+                pattern: {
+                  value: /[^@]+@[^.]+\..+/,
+                  message: 'Please enter a valid email address',
+                },
+              }}
+              errorClassName="input-error"
             />
-            <div className="field">
-              <Label name="email" errorClassName="label-error">
-                Email
-              </Label>
-              <TextField
-                name="email"
-                validation={{
-                  required: 'Email is required.',
-                  pattern: {
-                    value: /[^@]+@[^.]+\..+/,
-                    message: 'Please enter a valid email address',
-                  },
-                }}
-                errorClassName="input-error"
-              />
-              <FieldError name="email" className="field-error" />
-            </div>
-            <div className="field">
-              <Label name="password" errorClassName="label-error">
-                Password
-              </Label>
-              <PasswordField
-                name="password"
-                validation={{
-                  required: 'Password is required.',
-                  minLength: {
-                    value: 6,
-                    message: 'Password must have at least 6 characters',
-                  },
-                }}
-                errorClassName="input-error"
-              />
-              <FieldError name="password" className="field-error" />
-            </div>
-            <div className="field">
-              <Label name="passwordConfirmation" errorClassName="label-error">
-                Confirm Password
-              </Label>
-              <PasswordField
-                name="passwordConfirmation"
-                validation={{
-                  required: 'Password Confirmation is required.',
-                  validate: (value) =>
-                    value === currentPassword || 'The passwords do not match.',
-                }}
-                errorClassName="input-error"
-              />
-              <FieldError name="passwordConfirmation" className="field-error" />
-            </div>
-            <div className="field">
-              <Button
-                type="submit"
-                disabled={(formLoading || loading) && !error}
-              >
-                Sign Up
-              </Button>
-            </div>
-          </Form>
-        </div>
-      </div>
+            <FieldError name="email" className="field-error" />
+          </div>
+          <div className="field">
+            <Label name="password" errorClassName="label-error">
+              Password
+            </Label>
+            <PasswordField
+              name="password"
+              validation={{
+                required: 'Password is required.',
+                minLength: {
+                  value: 6,
+                  message: 'Password must have at least 6 characters',
+                },
+              }}
+              errorClassName="input-error"
+            />
+            <FieldError name="password" className="field-error" />
+          </div>
+          <div className="field">
+            <Label name="passwordConfirmation" errorClassName="label-error">
+              Confirm Password
+            </Label>
+            <PasswordField
+              name="passwordConfirmation"
+              validation={{
+                required: 'Password Confirmation is required.',
+                validate: (value) =>
+                  value === currentPassword || 'The passwords do not match.',
+              }}
+              errorClassName="input-error"
+            />
+            <FieldError name="passwordConfirmation" className="field-error" />
+          </div>
+          <div className="field">
+            <Button type="submit" disabled={(formLoading || loading) && !error}>
+              Sign Up
+            </Button>
+          </div>
+        </Form>
+      </SimpleLayout>
     </GlobalLayout>
   )
 }

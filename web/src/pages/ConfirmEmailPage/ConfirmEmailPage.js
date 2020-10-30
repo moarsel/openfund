@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '@redwoodjs/auth'
 import { useParams, Link, routes } from '@redwoodjs/router'
-import GlobalLayout from 'src/layouts/GlobalLayout/GlobalLayout'
+import { SimpleLayout, GlobalLayout } from 'src/layouts'
 
 const ConfirmEmailPage = () => {
   const { client } = useAuth()
@@ -29,18 +29,20 @@ const ConfirmEmailPage = () => {
 
   return (
     <GlobalLayout>
-      {loading ? (
-        <p>Loading...</p>
-      ) : confirmationError ? (
-        <p>{confirmationError}</p>
-      ) : token ? (
-        <p>
-          Email confirmed. You may now{' '}
-          <Link to={routes.signIn()}>sign in.</Link>
-        </p>
-      ) : (
-        <p>Confirmation email sent. Please check your inbox.</p>
-      )}
+      <SimpleLayout>
+        {loading ? (
+          <p>Loading...</p>
+        ) : confirmationError ? (
+          <p>{confirmationError}</p>
+        ) : token ? (
+          <p>
+            Email confirmed. You may now{' '}
+            <Link to={routes.signIn()}>sign in.</Link>
+          </p>
+        ) : (
+          <p>Confirmation email sent. Please check your inbox.</p>
+        )}
+      </SimpleLayout>
     </GlobalLayout>
   )
 }

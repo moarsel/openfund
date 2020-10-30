@@ -15,7 +15,7 @@ const ProjectForm = (props) => {
 
   return (
     <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={props.error}>
+      <Form onSubmit={onSubmit} error={props.error} className="space-y-4">
         <FormError
           error={props.error}
           wrapperClassName="rw-form-error-wrapper"

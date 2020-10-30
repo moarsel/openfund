@@ -1,5 +1,5 @@
 import { stripe } from 'src/lib/stripe'
-import { requirePermission } from 'src/lib/auth'
+import { requireAuth, requirePermission } from 'src/lib/auth'
 
 export const customers = async () => {
   requirePermission('admin')
@@ -41,7 +41,7 @@ export const setCustomerShipping = async ({ id, input }) => {
 }
 
 export const updateCustomer = async ({ id, input }) => {
-  requirePermission('admin')
+  requireAuth()
   const customer = await stripe.customers.update(id, {
     email: input.email,
   })

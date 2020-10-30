@@ -1,6 +1,6 @@
 import { navigate, routes } from '@redwoodjs/router'
 import { useCart } from 'src/components/Cart/CartContext'
-import { PageHeading } from '../UI'
+import { Body, Lead, PageHeading } from '../UI'
 import { Button } from '../UI/Button/Button'
 import { Card } from '../UI/Card/Card'
 
@@ -30,22 +30,18 @@ const Project = ({ project }) => {
       <div className="col-span-2">
         <img src={project.coverImage} alt="project image" className="w-full" />
         <PageHeading>{project.name} </PageHeading>
-        <p>{project.shortDescription}</p>
-        <p>{project.longDescription}</p>
+        <Lead className="mb-4">{project.shortDescription}</Lead>
+        <Body>{project.longDescription}</Body>
         {project.websiteLink && (
-          <p>
+          <Body>
             Learn more at the <a href={project.websiteLink}>project website</a>
-          </p>
+          </Body>
         )}
         {project.videoLink && (
-          <iframe
-            className="w-full"
-            src={`project.videoLink`}
-            frameBorder="0"
-          />
+          <iframe className="w-full" src={project.videoLink} frameBorder="0" />
         )}
       </div>
-      <Card className="sticky top-0 self-start mt-8">
+      <Card className="sticky top-0 self-start p-3 mt-8">
         <div className="flex flex-wrap my-3 text-center text-gray-700 justify-stretch">
           <div className="w-1/3">
             <div className="text-2xl">{project.contributorCount}</div>

@@ -1,2 +1,3 @@
 import GlobalLayout from './GlobalLayout/GlobalLayout'
-export { GlobalLayout }
+import SimpleLayout from './SimpleLayout/SimpleLayout'
+export { GlobalLayout, SimpleLayout }

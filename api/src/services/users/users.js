@@ -1,6 +1,6 @@
 import { db } from 'src/lib/db'
 
-import { requirePermission } from 'src/lib/auth'
+import { requirePermission, requireAuth } from 'src/lib/auth'
 
 import {
   updateCustomer,
@@ -53,7 +53,7 @@ export const createUser = async ({ input }) => {
 }
 
 export const updateUser = async ({ id, input }) => {
-  requirePermission('admin')
+  requireAuth()
   const user = await db.user.update({
     data: input,
     where: { id },
@@ -70,7 +70,7 @@ export const updateUser = async ({ id, input }) => {
 }
 
 export const deleteUser = async ({ id }) => {
-  requirePermission('Gandalf')
+  requirePermission('admin')
   return db.user.delete({
     where: { id },
   })

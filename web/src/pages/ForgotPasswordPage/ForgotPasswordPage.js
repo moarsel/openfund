@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { Form, Label, TextField, FieldError, Submit } from '@redwoodjs/web'
+import { Form, Label, TextField, FieldError } from '@redwoodjs/forms'
 import { useAuth } from '@redwoodjs/auth'
 import { navigate, routes } from '@redwoodjs/router'
 
 import { GlobalLayout } from 'src/layouts'
+import { PageHeading } from 'src/components/UI'
+import { Button } from 'src/components/UI/Button/Button'
 
 const ForgotPasswordPage = () => {
   const { client } = useAuth()
@@ -26,12 +28,16 @@ const ForgotPasswordPage = () => {
 
   return (
     <GlobalLayout>
-      <h2>Recover Password</h2>
+      <PageHeading>Recover Password</PageHeading>
       <p>
         Please enter your email to receive instructions for resetting your
         password.
       </p>
-      <Form onSubmit={onSubmit} validation={{ mode: 'onBlur' }}>
+      <Form
+        onSubmit={onSubmit}
+        validation={{ mode: 'onBlur' }}
+        className="space-y-4"
+      >
         {formError && <p className="form-error">{formError}</p>}
 
         <div className="field">
@@ -52,9 +58,9 @@ const ForgotPasswordPage = () => {
           <FieldError name="email" className="field-error" />
         </div>
         <div className="field">
-          <Submit className="btn" disabled={formLoading}>
+          <Button type="submit" disabled={formLoading}>
             Submit
-          </Submit>
+          </Button>
         </div>
       </Form>
     </GlobalLayout>

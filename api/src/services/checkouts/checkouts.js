@@ -66,7 +66,7 @@ const setCustomerViaAuth = async () => {
   if (dbUser.customerId) {
     return await customer({ id: dbUser.customerId })
   } else {
-    return await reconcileUsersCustomer({ id: dbUser.id }).customer
+    return await reconcileUsersCustomer({ id: authUser.sub }).customer
   }
 }
 

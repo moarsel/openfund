@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import { Form, Label, TextField, FieldError, Submit } from '@redwoodjs/forms'
+import { Form, Label, TextField, FieldError } from '@redwoodjs/forms'
 
 import { useCheckout } from 'src/components/Checkout'
+import { Button } from '../UI/Button/Button'
+import { Lead } from '../UI'
 
 export const SetShipping = () => {
   const { checkout, setShipping } = useCheckout()
@@ -18,9 +20,13 @@ export const SetShipping = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit} validation={{ mode: 'onBlur' }}>
+    <Form
+      onSubmit={onSubmit}
+      validation={{ mode: 'onBlur' }}
+      className="space-y-4"
+    >
       {state.error && <p className="form-error">{state.error}</p>}
-      <h4 style={{ paddingBottom: '0' }}>Shipping Address</h4>
+      <Lead as="h2">Billing Details</Lead>
       <div className="field">
         <Label name="name" errorClassName="label-error">
           Name
@@ -112,9 +118,9 @@ export const SetShipping = () => {
       </div>
 
       <div className="field">
-        <Submit className="btn" disabled={state.loading}>
+        <Button type="submit" disabled={state.loading}>
           Next: Payment Method
-        </Submit>
+        </Button>
       </div>
     </Form>
   )

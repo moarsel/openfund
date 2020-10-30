@@ -61,10 +61,18 @@ export const CheckoutProvider = ({ children }) => {
       const res = await API.setCustomer({
         variables: { input: { customerSource } },
       })
-      dispatch({
-        type: 'SET_CUSTOMER',
-        payload: res.data.setCustomer.customer,
-      })
+
+      if (res.data.setCustomer.customer) {
+        dispatch({
+          type: 'SET_CUSTOMER',
+          payload: res.data.setCustomer.customer,
+        })
+      } else {
+        dispatch({
+          type: 'SET_ERROR',
+          payload: 'Failed to create intialize',
+        })
+      }
     } catch (e) {
       dispatch({
         type: 'SET_ERROR',
@@ -84,20 +92,27 @@ export const CheckoutProvider = ({ children }) => {
     })
   }
 
-  const setIntent = async () => {
+  const setIntent = async (intent) => {
     setLoading(true)
-    try {
-      const res = await API.setIntent({
-        variables: { customerId: state.customer.id },
-      })
+    if (!intent) {
+      try {
+        const res = await API.setIntent({
+          variables: { customerId: state.customer.id },
+        })
+        dispatch({
+          type: 'SET_INTENT',
+          payload: res.data.setIntent.setupIntent,
+        })
+      } catch (e) {
+        dispatch({
+          type: 'SET_ERROR',
+          payload: 'Failed to create setupIntent',
+        })
+      }
+    } else {
       dispatch({
         type: 'SET_INTENT',
-        payload: res.data.setIntent.setupIntent,
-      })
-    } catch (e) {
-      dispatch({
-        type: 'SET_ERROR',
-        payload: 'Failed to create setupIntent',
+        payload: intent,
       })
     }
   }
@@ -109,11 +124,13 @@ export const CheckoutProvider = ({ children }) => {
         variables: {
           input: {
             customerId: state.customer.id,
+            customerEmail: state.customer.email,
             paymentMethodId,
             cart,
           },
         },
       })
+
       if (res.data.placeOrder.paymentIntent.status === 'succeeded') {
         clearCart()
         dispatch({
@@ -127,7 +144,7 @@ export const CheckoutProvider = ({ children }) => {
       setLoading(false)
       dispatch({
         type: 'SET_ERROR',
-        payload: 'Failed to place order',
+        payload: e.message || 'Error placing payment',
       })
     }
   }
@@ -149,6 +166,7 @@ export const CheckoutProvider = ({ children }) => {
         setIntent,
         placeOrder,
         setPhase,
+        dispatch,
       }}
     >
       {children}

@@ -10,7 +10,8 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 
-import { GlobalLayout } from 'src/layouts'
+import { GlobalLayout, SimpleLayout } from 'src/layouts'
+import { PageHeading } from 'src/components/UI'
 
 const ResetPasswordPage = () => {
   const { client } = useAuth()
@@ -60,54 +61,60 @@ const ResetPasswordPage = () => {
 
   return (
     <GlobalLayout>
-      <h2>Reset Password</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : tokenError ? (
-        <p>{tokenError}</p>
-      ) : user ? (
-        <Form formMethods={formMethods} onSubmit={onSubmit}>
-          {formError && <p className="form-error">{formError}</p>}
+      <SimpleLayout>
+        <PageHeading>Password Reset</PageHeading>
+        {loading ? (
+          <p>Loading...</p>
+        ) : tokenError ? (
+          <p>{tokenError}</p>
+        ) : user ? (
+          <Form
+            formMethods={formMethods}
+            onSubmit={onSubmit}
+            className="space-y-4"
+          >
+            {formError && <p className="form-error">{formError}</p>}
 
-          <div className="field">
-            <Label name="password" errorClassName="label-error">
-              Password
-            </Label>
-            <PasswordField
-              name="password"
-              validation={{
-                required: 'Password is required.',
-              }}
-              errorClassName="input-error"
-            />
-            <FieldError name="password" className="field-error" />
-          </div>
+            <div className="field">
+              <Label name="password" errorClassName="label-error">
+                Password
+              </Label>
+              <PasswordField
+                name="password"
+                validation={{
+                  required: 'Password is required.',
+                }}
+                errorClassName="input-error"
+              />
+              <FieldError name="password" className="field-error" />
+            </div>
 
-          <div className="field">
-            <Label name="passwordConfirmation" errorClassName="label-error">
-              Confirm Password
-            </Label>
-            <PasswordField
-              name="passwordConfirmation"
-              validation={{
-                required: 'Password Confirmation is required.',
-                validate: (value) =>
-                  value === currentPassword || 'The passwords do not match.',
-              }}
-              errorClassName="input-error"
-            />
-            <FieldError name="passwordConfirmation" className="field-error" />
-          </div>
+            <div className="field">
+              <Label name="passwordConfirmation" errorClassName="label-error">
+                Confirm Password
+              </Label>
+              <PasswordField
+                name="passwordConfirmation"
+                validation={{
+                  required: 'Password Confirmation is required.',
+                  validate: (value) =>
+                    value === currentPassword || 'The passwords do not match.',
+                }}
+                errorClassName="input-error"
+              />
+              <FieldError name="passwordConfirmation" className="field-error" />
+            </div>
 
-          <div className="field">
-            <Submit className="btn" disabled={formLoading}>
-              Submit
-            </Submit>
-          </div>
-        </Form>
-      ) : (
-        <p>Password reset email sent. Please check your inbox.</p>
-      )}
+            <div className="field">
+              <Submit className="btn" disabled={formLoading}>
+                Submit
+              </Submit>
+            </div>
+          </Form>
+        ) : (
+          <p>Password reset email sent. Please check your inbox.</p>
+        )}
+      </SimpleLayout>
     </GlobalLayout>
   )
 }

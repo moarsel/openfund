@@ -1,40 +1,38 @@
 import { useCart } from 'src/components/Cart/CartContext'
 import { useCheckout, PHASE } from 'src/components/Checkout'
 import { currency } from 'src/utils'
+import { Card } from '../UI/Card/Card'
 
 const CheckoutSummaryItem = ({ item }) => (
-  <div key={item.id} className="checkout-summary-item">
-    <div className="checkout-summary-item-name">{item.name}</div>
-    <div className="checkout-summary-item-amount">{currency(item.amount)}</div>
-    <div className="checkout-summary-item-description">
-      {item.shortDescription}
-    </div>
+  <div key={item.id} className="flex flex-wrap justify-between pb-3">
+    <div>{item.name}</div>
+    <div>{currency(item.amount)}</div>
+    <div>{item.shortDescription}</div>
   </div>
 )
 
 const CartSummary = () => {
   const { cart } = useCart()
   return (
-    <>
-      <h3 className="checkout-summary-title">Summary</h3>
+    <div className="mb-5">
+      <h3 className="font-semibold uppercase text-md">Summary</h3>
       {cart &&
         cart.cartItems.map((item) => (
           <CheckoutSummaryItem key={item.id} item={item} />
         ))}
-      <div className="checkout-summary-total">
+      <div className="flex flex-wrap justify-between">
         Total:
-        <div className="checkout-summary-total-currency">${cart.cartTotal}</div>
+        <div>{currency(cart.cartTotal)}</div>
       </div>
-    </>
+    </div>
   )
 }
 
 const ShippingSummary = ({ shipping, setPhase }) => {
   return (
-    <>
-      <hr />
-      <h3 className="checkout-summary-title">
-        Ship To{' '}
+    <div>
+      <h3 className="mt-4 font-semibold uppercase text-md">
+        Billing details{' '}
         <span className="text-small">
           (
           <button
@@ -62,7 +60,7 @@ const ShippingSummary = ({ shipping, setPhase }) => {
         {'  '}
         {shipping?.address.postalCode}
       </p>
-    </>
+    </div>
   )
 }
 
@@ -72,7 +70,7 @@ export const CheckoutSummary = () => {
   const { checkout, setPhase } = useCheckout()
 
   return (
-    <div className="checkout-summary">
+    <Card className="p-6 divide-y-2 divide-dashed sm:mt-5">
       <CartSummary />
       {checkout?.customer?.shipping ? (
         <ShippingSummary
@@ -81,6 +79,6 @@ export const CheckoutSummary = () => {
         />
       ) : null}
       {checkout?.payment ? <PaymentSummary /> : null}
-    </div>
+    </Card>
   )
 }

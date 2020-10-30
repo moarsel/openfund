@@ -23,10 +23,7 @@ export const CartItem = ({ item }) => {
             onChange={(e) => onChange(e.currentTarget.value)}
           />
         </div>
-        <Button
-          onClick={() => deleteItem({ id: item.id })}
-          className="btn-subdued"
-        >
+        <Button onClick={() => deleteItem({ id: item.id })} variant="secondary">
           Remove
         </Button>
       </div>

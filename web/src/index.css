@@ -1,17 +1,42 @@
+
+/* @font-face {
+  font-family: 'Messer Condensed';
+  src:  url('https://www.radicalxchange.org/fonts/messerv2.0-condensed-webfont.woff2') format('woff2'),
+        url('https://www.radicalxchange.org/fonts/messerv2.0-condensed-webfont.woff') format('woff');
+} */
+
+
 /* ./web/src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .button-primary {
-  @apply inline-flex items-center justify-center px-5 py-2 text-base font-medium leading-6 tracking-wide text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-sm;
+  @apply inline-flex items-center justify-center px-5 py-2 text-base font-medium leading-6 tracking-wide text-white uppercase transition duration-200 ease-in-out bg-gray-900 border border-transparent rounded-sm;
 }
 .button-primary:hover {
   @apply bg-gray-800;
 }
+.button-primary:active {
+  @apply bg-gray-700;
+}
 .button-primary:focus {
   @apply shadow-outline outline-none;
 }
+
+.button-secondary {
+  @apply inline-flex items-center justify-center px-5 py-2 text-base font-medium leading-6 tracking-wide text-black uppercase transition duration-200 ease-in-out bg-transparent border border-black rounded-sm ;
+}
+.button-secondary:hover {
+  @apply bg-gray-200;
+}
+.button-secondary:active {
+  @apply bg-gray-400;
+}
+.button-secondary:focus {
+  @apply shadow-outline outline-none;
+}
+
 
 input,
 .stripe-input { display: block; width: 100%; padding: 0.5rem; border: 1px solid #c3c3c3; border-radius: 3px; }
@@ -41,6 +66,32 @@ input:focus,
   align-items: center;
   flex-wrap: wrap;
 }
+
+.skip-link {
+  @apply button-primary;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+.skip-link:focus {
+  @apply button-primary;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
 .ui-loader.ui-loader-inline { position: relative; }
 .ui-loader.ui-loader-block { position: absolute; margin: 0 auto; min-height: 300px; }
 .has-block-loader { position: relative;}
