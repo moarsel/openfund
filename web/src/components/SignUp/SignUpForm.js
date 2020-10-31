@@ -8,6 +8,7 @@ import {
 import { useForm } from 'react-hook-form'
 
 import { Button } from '../UI/Button/Button'
+import { Loader } from '../UI/Loader/Loader'
 
 export const SignUpForm = ({ onSubmit, loading, error }) => {
   const formMethods = useForm({ mode: 'onBlur' })
@@ -16,6 +17,7 @@ export const SignUpForm = ({ onSubmit, loading, error }) => {
   return (
     <Form formMethods={formMethods} onSubmit={onSubmit} className="space-y-4">
       {error && <p className="form-error">{error}</p>}
+      {loading && <Loader type="BLOCK" />}
       <div className="field">
         <Label name="email" errorClassName="label-error">
           Email

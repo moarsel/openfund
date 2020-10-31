@@ -1,5 +1,3 @@
-import { routes, navigate } from '@redwoodjs/router'
-
 import { GlobalLayout, SimpleLayout } from 'src/layouts'
 import { PageHeading } from 'src/components/UI'
 import { SignUpForm, useSignUp } from 'src/components/SignUp'
