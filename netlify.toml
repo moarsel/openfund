@@ -1,18 +1,18 @@
 [build]
-command = "yarn rw build && yarn rw db up --no-db-client --auto-approve && yarn rw dataMigrate up"
-publish = "web/dist"
-functions = "api/dist/functions"
+  command = "yarn rw build && yarn rw db up --no-db-client --auto-approve && yarn rw dataMigrate up"
+  publish = "web/dist"
+  functions = "api/dist/functions"
 
 [dev]
   command = "yarn rw dev"
 
 
 [template.environment]
-  DATABASE_URL = "postgres://<user>:<pass>@<url>/<db>?connection_limit=1"
+  DATABASE_URL  ="postgres://<user>:<pass>@<url>/<db>?connection_limit=1"
   SITE_LOGO = "https://www.netlify.com/logo-placeholder.svg"
-  STRIPE_PUBLIC_KEY=pk_test_123
-  STRIPE_SECRET_KEY=sk_test_345
-  STRIPE_WEBHOOK_SECRET=whsec_567
+  STRIPE_PUBLIC_KEY = "pk_test_123"
+  STRIPE_SECRET_KEY = "sk_test_345"
+  STRIPE_WEBHOOK_SECRET = "whsec_567"
 
 
 [[redirects]]
