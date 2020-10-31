@@ -6,6 +6,8 @@
 [dev]
   command = "yarn rw dev"
 
+[web]
+  includeEnvironmentVariables = ['AUTH_API_URL', 'STRIPE_PUBLIC_KEY']
 
 [template.environment]
   DATABASE_URL  ="postgres://<user>:<pass>@<url>/<db>?connection_limit=1"
@@ -14,7 +16,6 @@
   STRIPE_PUBLIC_KEY = "pk_test_123"
   STRIPE_SECRET_KEY = "sk_test_345"
   STRIPE_WEBHOOK_SECRET = "whsec_567"
-
 
 [[redirects]]
   from = "/*"
