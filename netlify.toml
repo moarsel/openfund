@@ -10,6 +10,7 @@
 [template.environment]
   DATABASE_URL  ="postgres://<user>:<pass>@<url>/<db>?connection_limit=1"
   SITE_LOGO = "https://www.netlify.com/logo-placeholder.svg"
+  AUTH_API_URL = "https://my-app.netlify.app/.netlify/identity"
   STRIPE_PUBLIC_KEY = "pk_test_123"
   STRIPE_SECRET_KEY = "sk_test_345"
   STRIPE_WEBHOOK_SECRET = "whsec_567"
