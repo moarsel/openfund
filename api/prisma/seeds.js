@@ -12,9 +12,7 @@ async function main() {
   // existence of a record before trying to create it). For example:
   //
 
-  const existingProject = await db.business.findMany({
-    where: { ownerEmail: 'admin@email.com' },
-  })
+  const existingProject = await db.project.findMany()
   if (!existingProject.length) {
     const testData1 = {
       name: 'Speaker Series',
