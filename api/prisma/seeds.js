@@ -43,8 +43,8 @@ async function main() {
       goalAmount: 100000,
       websiteLink: 'https://www.radicalxchange.org/',
     }
-    await db.user.create({ data: testData1 })
-    await db.user.create({ data: testData2 })
+    await db.project.create({ data: testData1 })
+    await db.project.create({ data: testData2 })
   }
 }
 
