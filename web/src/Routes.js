@@ -18,6 +18,7 @@ const Routes = () => {
       <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
       <Route path="/signin" page={SignInPage} name="signIn" />
+      <Route path="/signup" page={SignUpPage} name="signUp" />
       <Route path="/checkout" page={CheckoutPage} name="checkout" />
       <Route path="/order/{id}" page={OrderPage} name="order" />
       <Private unauthenticated="home" role="admin">
