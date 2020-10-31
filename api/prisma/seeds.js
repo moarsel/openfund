@@ -11,33 +11,43 @@ async function main() {
   // will result in the same database state (usually by checking for the
   // existence of a record before trying to create it). For example:
   //
-  const existingUser = await db.user.findMany({
-    where: { email: 'admin@email.com' },
-  })
-  if (!existingUser.length) {
-    await db.user.create({ data: { name: 'Admin', email: 'admin@email.com' } })
-  }
 
   const existingProject = await db.business.findMany({
     where: { ownerEmail: 'admin@email.com' },
   })
   if (!existingProject.length) {
-    const testData = {
-      name: 'Test',
-      ownerEmail: 'Test',
-      logo: 'Test',
-      shortDescription: 'Test project',
-      longDescription: 'Example of a test business for testing',
-      coverImage: 'Test',
-      stripeId: 'Test',
-      goalAmount: 100,
-      videoLink: 'youtube.com/watch?abcdef',
-      websiteLink: 'www.example.com',
+    const testData1 = {
+      name: 'Speaker Series',
+      ownerEmail: 'test@test.com',
+      logo: '',
+      shortDescription: 'Bringing the best speakers from around the globe.',
+      longDescription:
+        'This will be our biggest drive to grow the conversation around our mission around the world. We plan on bringing together speakers from diverse backgrounds to discuss the ideas related to our mission.',
+      coverImage:
+        'https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+      stripeId: 'acct_1GoC8zCed2AVwHSp',
+      goalAmount: 200000,
+      videoLink: 'https://www.youtube.com/embed/_xRbnobzs2Y',
+      websiteLink: 'https://www.radicalxchange.org/',
     }
-    await db.user.create({ data: testData })
-  }
 
-  console.info('No data to seed. See api/prisma/seeds.js for info.')
+    const testData2 = {
+      name: 'Website upgrades',
+      ownerEmail: 'test@test.com',
+      logo: '',
+      shortDescription:
+        'This will bring some much needed upgrades to the site.',
+      longDescription:
+        "There are a few enhancements we have been meaning to do on the website but haven't had the capacity to do. ",
+      coverImage:
+        'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80',
+      stripeId: 'acct_1GoC8zCed2AVwHSp',
+      goalAmount: 100000,
+      websiteLink: 'https://www.radicalxchange.org/',
+    }
+    await db.user.create({ data: testData1 })
+    await db.user.create({ data: testData2 })
+  }
 }
 
 main()
