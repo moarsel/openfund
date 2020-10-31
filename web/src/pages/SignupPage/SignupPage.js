@@ -16,7 +16,7 @@ import { GlobalLayout, SimpleLayout } from 'src/layouts'
 import { PageHeading } from 'src/components/UI'
 import { Button } from 'src/components/UI/Button/Button'
 
-const CREATE_USER_MUTATION = gql`
+export const CREATE_USER_MUTATION = gql`
   mutation CreateUserMutation($input: CreateUserInput!) {
     createUser(input: $input) {
       id
@@ -57,7 +57,6 @@ const SignUpPage = () => {
     setFormLoading(true)
     signup(data)
   }
-
   return (
     <GlobalLayout>
       <SimpleLayout>

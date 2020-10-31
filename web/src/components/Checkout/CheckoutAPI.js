@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/react-hooks'
 
 // MUTATIONS
-const SET_CUSTOMER = gql`
+export const SET_CUSTOMER = gql`
   mutation setCustomerMutation($input: SetCustomerInput!) {
     setCustomer(input: $input) {
       customer {
@@ -22,7 +22,7 @@ const SET_CUSTOMER = gql`
   }
 `
 
-const SET_SHIPPING = gql`
+export const SET_SHIPPING = gql`
   mutation setShippingMutation(
     $customerId: String!
     $input: SetShippingInput!
@@ -46,7 +46,7 @@ const SET_SHIPPING = gql`
   }
 `
 
-const SET_INTENT = gql`
+export const SET_INTENT = gql`
   mutation setIntentMutation($customerId: String!) {
     setIntent(customerId: $customerId) {
       setupIntent {
@@ -58,7 +58,7 @@ const SET_INTENT = gql`
   }
 `
 
-const PLACE_ORDER = gql`
+export const PLACE_ORDER = gql`
   mutation placeOrderMutation($input: PlaceOrderInput!) {
     placeOrder(input: $input) {
       paymentIntent {
