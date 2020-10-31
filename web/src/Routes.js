@@ -17,7 +17,6 @@ const Routes = () => {
       <Route path="/confirm-email" page={ConfirmEmailPage} name="confirmEmail" />
       <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
-      <Route path="/signup" page={SignUpPage} name="signUp" />
       <Route path="/signin" page={SignInPage} name="signIn" />
       <Route path="/checkout" page={CheckoutPage} name="checkout" />
       <Route path="/order/{id}" page={OrderPage} name="order" />
