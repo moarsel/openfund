@@ -1,0 +1,11 @@
+{
+  "name": "Heroku Postgres Database",
+  "description": "A template postgress database for easier app setup.",
+  "addons": ["heroku-postgresql:hobby-dev"],
+  "env": {
+
+  },
+  "scripts": {
+
+  }
+}
