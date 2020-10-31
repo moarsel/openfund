@@ -2,7 +2,7 @@ import { stripe } from 'src/lib/stripe'
 
 export async function createPaymentIntent(input) {
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: input.cart.cartTotal * 100, // stripe handles currency without decimals
+    amount: input.cart.cartTotal, // stripe handles currency without decimals
     currency: 'cad',
     customer: input.customerId,
     payment_method: input.paymentMethodId,
@@ -19,5 +19,5 @@ export async function createPaymentIntent(input) {
 }
 
 function castPaymentIntent({ id, amount, created, status }) {
-  return { id, amount: amount / 100, created, status }
+  return { id, amount: amount, created, status }
 }

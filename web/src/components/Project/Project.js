@@ -44,19 +44,25 @@ const Project = ({ project }) => {
       <Card className="sticky top-0 self-start p-3 mt-8">
         <div className="flex flex-wrap my-3 text-center text-gray-700 justify-stretch">
           <div className="w-1/3">
-            <div className="text-2xl">{project.contributorCount}</div>
-            <p>Contributors</p>
+            <div className="text-2xl">${project.contributionsTotal}</div>
+            <p>Total Contributions</p>
           </div>
           <div className="w-1/3">
             <div className="text-2xl">${project.goalAmount}</div>
             <p>Goal</p>
+          </div>
+        </div>
+        <div className="flex flex-wrap my-3 text-center text-gray-700 justify-stretch">
+          <div className="w-1/3">
+            <div className="text-2xl">{project.contributorCount}</div>
+            <p>Contributors</p>
           </div>
           <div className="w-1/3">
             <div className="text-2xl">${project.currentMatchingAmount}</div>
             <p>Current Matching Amount</p>
           </div>
         </div>
-        <Button className="w-full" onClick={() => handleSubmit(20)}>
+        <Button className="w-full" onClick={() => handleSubmit(2000)}>
           Contribute $20
         </Button>
       </Card>

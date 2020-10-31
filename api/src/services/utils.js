@@ -63,9 +63,7 @@ export const calculateMatchingAmounts = (projects, availableMatchingFunds) => {
   const divisor = availableMatchingFunds / totalMatchingForProjects
   const normalizedTotals = initialMatchAmounts.map((project) => ({
     ...project,
-    currentMatchingAmount: Number(
-      (project.currentMatchingAmount * divisor).toFixed(2)
-    ),
+    currentMatchingAmount: Math.round(project.currentMatchingAmount * divisor),
   }))
   return normalizedTotals
 }
