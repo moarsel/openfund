@@ -16,14 +16,6 @@ import { GlobalLayout, SimpleLayout } from 'src/layouts'
 import { PageHeading } from 'src/components/UI'
 import { Button } from 'src/components/UI/Button/Button'
 
-export const CREATE_USER_MUTATION = gql`
-  mutation CreateUserMutation($input: CreateUserInput!) {
-    createUser(input: $input) {
-      id
-    }
-  }
-`
-
 const SignUpPage = () => {
   const formMethods = useForm({ mode: 'onBlur' })
   const currentPassword = formMethods.watch('password', '')
@@ -31,11 +23,9 @@ const SignUpPage = () => {
   const [formError, setFormError] = useState(null)
   const [formLoading, setFormLoading] = useState(false)
 
-  const [createUser, { loading, error }] = useMutation(CREATE_USER_MUTATION, {
-    onCompleted: () => {
-      navigate(routes.confirmEmail())
-    },
-  })
+  const createUser = () => {}
+  const loading = ''
+  const error = ''
 
   const signup = (data) => {
     client
