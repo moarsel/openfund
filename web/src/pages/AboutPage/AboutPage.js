@@ -34,9 +34,13 @@ const AboutPage = () => {
         the same time, allocates our budget to projects that reflect the
         community needs.
       </Body>
+      <Lead>Can I contribute?</Lead>
       <Body withMargins>
-        The economics of QF have proven its worth in action, for example in
-        Downtown Stimulus and Gitcoin Grants.
+        Yes! Please reach out to{' '}
+        <a href="mailto:matt@radicalxchange.org?subject='OpenFund Contribution Inquiry'">
+          RadicalxChange Foundation
+        </a>{' '}
+        to back the next round
       </Body>
 
       <Body withMargins>

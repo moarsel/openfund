@@ -48,6 +48,26 @@ export function SocialShare({ children, className = '', ...props }) {
         </svg>
       </a>{' '}
       <a
+        href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
+          document.URL
+        )}&title=${encodeURIComponent(document.title)}`}
+        target="_blank"
+        rel="noreferrer"
+        title="LinkedIn"
+        className="flex flex-wrap justify-center ml-2 rounded-md align-center"
+        style={{ width: '2em', height: '2em', background: '#0077b5' }}
+      >
+        <svg
+          style={{ fill: '#FFF', height: '42%', margin: '29% auto' }}
+          viewBox="0 -256 1536 1468"
+        >
+          <path
+            transform="matrix(1,0,0,-1,0,1132)"
+            d="M 349,911 V -80 H 19 v 991 h 330 z m 21,306 q 1,-73 -50.5,-122 Q 268,1046 184,1046 h -2 q -82,0 -132,49 -50,49 -50,122 0,74 51.5,123 51.5,48 134.5,48 83,0 133,-48 50,-49 51,-123 z M 1536,488 V -80 h -329 v 530 q 0,105 -40,164.5 Q 1126,674 1040,674 977,674 934.5,639.5 892,605 871,554 860,524 860,473 V -80 H 531 q 2,399 2,647 0,248 -1,296 l -1,48 H 860 V 767 h -2 q 20,32 41,56 21,24 56.5,52 35.5,28 87.5,43.5 51,15.5 114,15.5 171,0 275,-113.5 Q 1536,707 1536,488 z"
+          />
+        </svg>
+      </a>
+      <a
         href={`mailto:?body=${encodeURIComponent(
           document.URL
         )}%0A%0A${encodeURIComponent(

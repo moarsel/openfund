@@ -2,6 +2,8 @@
 
 # OpenFund
 
+View the demo app here: https://silly-hypatia-fa017a.netlify.app/
+
 ## Development Setup
 
 We use Yarn as our package manager. To get the dependencies installed, just do this in the root directory:

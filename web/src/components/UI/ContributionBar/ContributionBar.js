@@ -7,18 +7,18 @@ export function ContributionBar({
   goalAmount,
 }) {
   const contributionProgress = (contributionsTotal / goalAmount) * 100
-  const matchingProgress = (currentMatchingAmount / goalAmount) * 100
-
+  const matchingProgress =
+    contributionProgress + (currentMatchingAmount / goalAmount) * 100
   return (
     <div className="relative">
-      <div className="flex h-5 mb-2 overflow-hidden text-xs bg-gray-300">
+      <div className="relative flex h-5 mb-2 overflow-hidden text-xs bg-gray-300">
         <div
-          style={{ width: contributionProgress }}
-          className="flex flex-col justify-center text-center text-white bg-green-500 shadow-none whitespace-nowrap"
+          style={{ width: `${matchingProgress}%` }}
+          className="absolute items-center justify-center h-5 text-center text-white bg-indigo-500 shadow-none whitespace-nowrap"
         ></div>
         <div
-          style={{ width: matchingProgress }}
-          className="flex flex-col items-center justify-center text-center text-white bg-indigo-500 shadow-none whitespace-nowrap"
+          style={{ width: `${contributionProgress}%` }}
+          className="absolute justify-center h-5 text-center text-white bg-green-500 shadow-none whitespace-nowrap"
         ></div>
       </div>
       <div className="flex items-stretch justify-between px-3">

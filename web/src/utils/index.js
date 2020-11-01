@@ -1,5 +1,5 @@
 export const currency = (amount = 0) => {
-  return `$${amount.toFixed(2) / 100}`
+  return `$${(amount / 100).toFixed(2).replace(/\.00+$/, '')}`
 }
 
 // token

@@ -10,7 +10,6 @@ async function main() {
   // Ideally this file should be idempotent: running it multiple times
   // will result in the same database state (usually by checking for the
   // existence of a record before trying to create it). For example:
-  //
 
   const fundingRound = await db.fundingRound.findMany()
   if (!fundingRound.length) {

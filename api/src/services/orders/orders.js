@@ -1,6 +1,9 @@
 import { stripe } from 'src/lib/stripe'
 
 export async function createPaymentIntent(input) {
+  if (!input.cart.cartItems[0]) {
+    throw new Error('No project contributions are selected')
+  }
   const paymentIntent = await stripe.paymentIntents.create({
     amount: input.cart.cartTotal, // stripe handles currency without decimals
     currency: 'cad',

@@ -36,15 +36,25 @@ const Project = ({ project, endDate }) => {
         <img src={project.coverImage} alt="project image" className="w-full" />
         <SocialShare className="justify-end">Share</SocialShare>
         <PageHeading>{project.name} </PageHeading>
-        <Lead className="mb-4">{project.shortDescription}</Lead>
-        <Body>{project.longDescription}</Body>
+        <Lead>{project.shortDescription}</Lead>
+        <Body withMargins>{project.longDescription}</Body>
         {project.websiteLink && (
-          <Body>
-            Learn more at the <a href={project.websiteLink}>project website</a>
+          <Body withMargins>
+            Learn more at the{' '}
+            <a href={project.websiteLink} className="underline">
+              project website
+            </a>
+            .
           </Body>
         )}
         {project.videoLink && (
-          <iframe className="w-full" src={project.videoLink} frameBorder="0" />
+          <div className="mt-5 embed-responsive aspect-ratio-4/3">
+            <iframe
+              className="embed-responsive-item"
+              src={project.videoLink}
+              frameBorder="0"
+            ></iframe>
+          </div>
         )}
       </div>
       <Card className="sticky self-start" style={{ top: '3rem' }}>

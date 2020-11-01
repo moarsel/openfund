@@ -25,9 +25,9 @@ export const CartReducer = (state, action) => {
           return item.id !== action.payload.item.id ? item : action.payload.item
         })
       } else {
-        // add item
+        // add item -- currently only one project supported at a time
         const newItem = siftObject(action.payload.item, '__typename')
-        cartItems = [{ ...newItem }, ...state.cartItems]
+        cartItems = [{ ...newItem }]
       }
       const newState = {
         ...state,

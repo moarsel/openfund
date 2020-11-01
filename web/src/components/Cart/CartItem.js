@@ -17,7 +17,7 @@ export const CartItem = ({ item }) => {
           <input
             name="amount"
             type="number"
-            min="20"
+            min="5"
             value={item.qty || 1}
             className="cart-item-qty-field"
             onChange={(e) => onChange(e.currentTarget.value)}
