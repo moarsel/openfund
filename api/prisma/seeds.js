@@ -13,7 +13,7 @@ async function main() {
   //
 
   const existingProject = await db.project.findMany()
-  if (!existingProject.length) {
+  if (existingProject.length < 2) {
     const testData1 = {
       name: 'Speaker Series',
       ownerEmail: 'test@test.com',
@@ -40,6 +40,7 @@ async function main() {
       coverImage:
         'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80',
       stripeId: 'acct_1GoC8zCed2AVwHSp',
+      videoLink: 'https://www.youtube.com/embed/_xRbnobzs2Y',
       goalAmount: 100000,
       websiteLink: 'https://www.radicalxchange.org/',
     }

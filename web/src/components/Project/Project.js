@@ -1,11 +1,17 @@
+import { Label, NumberField } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
+import { useState } from 'react'
 import { useCart } from 'src/components/Cart/CartContext'
+import { currency } from 'src/utils'
 import { Body, Lead, PageHeading } from '../UI'
 import { Button } from '../UI/Button/Button'
 import { Card } from '../UI/Card/Card'
+import { ContributionBar } from '../UI/ContributionBar/ContributionBar'
+import { SocialShare } from '../UI/SocialShare/SocialShare'
 
 const Project = ({ project }) => {
   const { addItem } = useCart()
+  const [amount, setAmount] = useState(2000)
 
   function handleSubmit(amount) {
     addItem({
@@ -29,6 +35,7 @@ const Project = ({ project }) => {
     <div className="relative grid grid-cols-1 gap-4 md:grid-cols-3 justify-items-auto">
       <div className="col-span-2">
         <img src={project.coverImage} alt="project image" className="w-full" />
+        <SocialShare className="justify-end">Share</SocialShare>
         <PageHeading>{project.name} </PageHeading>
         <Lead className="mb-4">{project.shortDescription}</Lead>
         <Body>{project.longDescription}</Body>
@@ -41,29 +48,50 @@ const Project = ({ project }) => {
           <iframe className="w-full" src={project.videoLink} frameBorder="0" />
         )}
       </div>
-      <Card className="sticky top-0 self-start p-3 mt-8">
-        <div className="flex flex-wrap my-3 text-center text-gray-700 justify-stretch">
-          <div className="w-1/3">
-            <div className="text-2xl">${project.contributionsTotal}</div>
-            <p>Total Contributions</p>
-          </div>
-          <div className="w-1/3">
-            <div className="text-2xl">${project.goalAmount}</div>
-            <p>Goal</p>
-          </div>
+      <Card className="sticky top-0 self-start mt-8">
+        <ContributionBar
+          contributionsTotal={project.contributionsTotal}
+          currentMatchingAmount={project.currentMatchingAmount}
+          goalAmount={project.goalAmount}
+        />
+        <div className="p-5">
+          <Body className="mb-1">
+            <Lead as="h3" className="mb-1">
+              Contribute
+            </Lead>
+            <strong>{project.contributorCount}</strong> people have raised{' '}
+            <strong>{currency(project.contributionsTotal)}</strong> so far.
+            Right now, that unlocks{' '}
+            <strong>{currency(project.currentMatchingAmount)}</strong> of
+            matching funds.
+          </Body>
+          <Body>
+            Will you help them reach their{' '}
+            <strong>{currency(project.goalAmount)}</strong> goal?
+          </Body>
         </div>
-        <div className="flex flex-wrap my-3 text-center text-gray-700 justify-stretch">
-          <div className="w-1/3">
-            <div className="text-2xl">{project.contributorCount}</div>
-            <p>Contributors</p>
-          </div>
-          <div className="w-1/3">
-            <div className="text-2xl">${project.currentMatchingAmount}</div>
-            <p>Current Matching Amount</p>
-          </div>
+        <div className="flex flex-wrap items-end p-4 ">
+          <label>
+            Amount (USD)
+            <input
+              type="number"
+              name="amount"
+              value={amount / 100}
+              onChange={(e) => setAmount(e.target.value * 100)}
+              className="input-field"
+              required
+            />
+          </label>
+          <Button variant="secondary" onClick={() => setAmount(2000)}>
+            $20
+          </Button>
+          <Button variant="secondary" onClick={() => setAmount(5000)}>
+            $50
+          </Button>
         </div>
-        <Button className="w-full" onClick={() => handleSubmit(2000)}>
-          Contribute $20
+
+        <Button className="w-full" onClick={() => handleSubmit(amount)}>
+          Contribute {currency(amount)}
         </Button>
       </Card>
     </div>

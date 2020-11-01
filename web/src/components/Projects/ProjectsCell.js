@@ -16,6 +16,9 @@ export const QUERY = gql`
       goalAmount
       videoLink
       websiteLink
+      contributionsTotal
+      currentMatchingAmount
+      goalAmount
     }
   }
 `

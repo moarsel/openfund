@@ -1,5 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 import { Card } from '../UI/Card/Card'
+import { ContributionBar } from '../UI/ContributionBar/ContributionBar'
 
 const ProjectsList = ({ projects }) => {
   return (
@@ -18,14 +19,18 @@ const ProjectsList = ({ projects }) => {
               width="100"
               height="100"
             />
+            <ContributionBar
+              contributionsTotal={project.contributionsTotal}
+              currentMatchingAmount={project.currentMatchingAmount}
+              goalAmount={project.goalAmount}
+            />
             <div className="px-6 py-4">
-              <div className="mb-2 text-xl font-bold truncate">
+              <div className="mb-2 text-xl font-bold">
                 <h2>{project.name}</h2>
               </div>
-              <p className="text-base text-gray-700 truncate">
+              <p className="text-base text-gray-700">
                 {project.shortDescription}
               </p>
-              <div>Goal: {project.goalAmount}</div>
             </div>
           </Card>
         </Link>
