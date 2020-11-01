@@ -28,6 +28,11 @@ export const userByAuthId = async ({ id }) => {
   return user
 }
 
+export const currentUser = async () => {
+  requireAuth()
+  return userByAuthId({ id: context.currentUser.sub })
+}
+
 export const user = async ({ id }) => {
   const user = db.user.findOne({
     where: { id },

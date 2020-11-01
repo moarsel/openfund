@@ -7,7 +7,10 @@ import { Navlink } from '../UI/Navigation/NavLink'
 const Navigation = () => {
   const { isAuthenticated } = useAuth()
   const sideMenu = isAuthenticated ? (
-    <LogoutBtn />
+    <>
+      <Navlink to={routes.account()}>Account</Navlink>
+      <LogoutBtn />
+    </>
   ) : (
     <>
       <Navlink to={routes.signUp()}>Sign Up</Navlink>
