@@ -8,7 +8,7 @@ import { Card } from '../UI/Card/Card'
 import { ContributionBar } from '../UI/ContributionBar/ContributionBar'
 import { SocialShare } from '../UI/SocialShare/SocialShare'
 
-const Project = ({ project }) => {
+const Project = ({ project, endDate }) => {
   const { addItem } = useCart()
   const [amount, setAmount] = useState(2000)
 
@@ -66,7 +66,14 @@ const Project = ({ project }) => {
           </Body>
           <Body>
             Will you help them reach their{' '}
-            <strong>{currency(project.goalAmount)}</strong> goal?
+            <strong>{currency(project.goalAmount)}</strong> goal by{' '}
+            <strong>
+              {new Date(endDate).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+              })}
+            </strong>
+            ?
           </Body>
         </div>
         <form onSubmit={() => handleSubmit(amount)}>

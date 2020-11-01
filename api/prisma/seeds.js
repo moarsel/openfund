@@ -12,6 +12,15 @@ async function main() {
   // existence of a record before trying to create it). For example:
   //
 
+  const fundingRound = await db.fundingRound.findMany()
+  if (!fundingRound.length) {
+    const now = new Date()
+    const futureDate = new Date(now.getFullYear(), now.getMonth() + 2, 1)
+    await db.fundingRound.create({
+      data: { matchingAmountPool: 100000, endDate: futureDate },
+    })
+  }
+
   const existingProject = await db.project.findMany()
   if (existingProject.length < 2) {
     const testData1 = {
