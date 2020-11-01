@@ -39,10 +39,10 @@
 
 
 input,
-.stripe-input { display: block; width: 100%; padding: 0.5rem; border: 1px solid #c3c3c3; border-radius: 3px; }
+.stripe-input { display: block; width: 100%; padding: 0.5rem; border: 1px solid #000; border-radius: 3px; }
 input[type="checkbox"] { width: auto; display: inline-block; margin-right: 1rem; }
 input:focus,
-.stripe-input-focus { outline: none; border-color: #5b68a5; }
+.stripe-input-focus { outline: none; border-color: #5b68a5; box-shadow: 0 0 5px RGBA(0,0,0, 0.2) }
 
 .btn-subdued { background: #7a819e; }
 .btn-subdued:hover { background: #95a2d6; }

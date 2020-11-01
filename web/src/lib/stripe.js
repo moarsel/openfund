@@ -12,7 +12,7 @@ export const CARD_ELEMENT_OPTIONS = {
       color: '#444',
       fontFamily: 'sans-serif',
       fontSmoothing: 'antialiased',
-      fontSize: '16px',
+      fontSize: '18px',
     },
     invalid: {
       color: '#fa755a',

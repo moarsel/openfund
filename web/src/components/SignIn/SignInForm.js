@@ -22,6 +22,7 @@ export const SignInForm = ({ onSubmit, loading, error }) => (
         Email
       </Label>
       <TextField
+        autofocus
         name="email"
         validation={{
           required: 'Email is required.',

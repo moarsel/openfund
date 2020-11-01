@@ -18,7 +18,7 @@ const Navigation = () => {
     <header>
       <Navbar utilitySection={sideMenu}>
         <Navlink to="/">Projects</Navlink>
-        <Navlink to="/about">How it works</Navlink>
+        <Navlink to="/about">About</Navlink>
       </Navbar>
     </header>
   )

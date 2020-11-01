@@ -60,13 +60,15 @@ export const PaymentForm = () => {
         setState({ ...state, error: error.message, loading: false })
       } else if (checkout.setupIntent.status === 'requires_action') {
         setState({ ...state, loading: true })
+      } else {
+        setIntent(setupIntent)
+        placeOrder({
+          paymentMethodId: setupIntent.payment_method,
+        })
       }
-      setIntent(setupIntent)
-      placeOrder({
-        paymentMethodId: setupIntent.payment_method,
-      })
     } else {
       setState({ ...state, loading: false })
+
       placeOrder({
         paymentMethodId: checkout.setupIntent.payment_method,
       })
@@ -74,7 +76,7 @@ export const PaymentForm = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit} className="space-y-4 has-block-loader ">
+    <Form onSubmit={onSubmit} className="mr-4 space-y-4 has-block-loader ">
       {state.loading && <Loader type="BLOCK" />}
       {state.error && <p className="form-error">{state.error}</p>}
       <Lead as="h2">Payment Method</Lead>
@@ -84,9 +86,9 @@ export const PaymentForm = () => {
       </div>
       <p>Test card: 4242 4242 4242 4242 : 04/24 : 242 : 42424</p>
       <p className="text-small">
-        By clicking &ldquo;Next&rdquo; below you authorize BodaciousBots to send
-        instructions to the financial institution that issued your card to take
-        payment from your account.
+        By clicking &ldquo;Submit order and pay&rdquo; below you authorize us to
+        send instructions to the financial institution that issued your card to
+        take payment from your account.
       </p>
       <div className="flex flex-wrap items-start">
         <Button
