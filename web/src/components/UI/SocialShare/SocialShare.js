@@ -6,7 +6,9 @@ export function SocialShare({ children, className = '', ...props }) {
     <div className={`flex flex-wrap items-center py-3 ${className}`} {...props}>
       <Body> {children} </Body>
       <a
-        href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(document.URL)+'"
+        href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          document.URL
+        )}`}
         target="_blank"
         rel="noreferrer"
         title="Facebook"
@@ -25,7 +27,9 @@ export function SocialShare({ children, className = '', ...props }) {
         </svg>
       </a>{' '}
       <a
-        href="https://twitter.com/share?url='+encodeURIComponent(document.URL)+'&text='+encodeURIComponent(document.title)+'"
+        href={`https://twitter.com/share?url=${encodeURIComponent(
+          document.URL
+        )}&text=${encodeURIComponent(document.title)}`}
         target="_blank"
         rel="noreferrer"
         title="Twitter"
@@ -44,7 +48,13 @@ export function SocialShare({ children, className = '', ...props }) {
         </svg>
       </a>{' '}
       <a
-        href="mailto:?body='+encodeURIComponent(document.URL)+'%0A%0A'+encodeURIComponent(document.querySelector('meta[name=description]')?document.querySelector('meta[name=description]').content:'')+'&subject='+encodeURIComponent(document.title)+'"
+        href={`mailto:?body=${encodeURIComponent(
+          document.URL
+        )}%0A%0A${encodeURIComponent(
+          document.querySelector('meta[name=description]')
+            ? document.querySelector('meta[name=description]').content
+            : ''
+        )}&subject=${encodeURIComponent(document.title)}`}
         title="Mail"
         className="flex flex-wrap justify-center ml-2 rounded-md align-center"
         style={{ width: '2em', height: '2em', background: '#555' }}

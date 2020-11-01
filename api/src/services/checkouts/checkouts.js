@@ -46,7 +46,7 @@ export const placeOrder = async ({ input }) => {
   const donation = await createDonationFromPaymentIntent(input, paymentIntent)
   const allDonations = await projects({ include: { donations: true } })
   // TODO: matching pool is hardcoded
-  const matchingPoolSize = 1000
+  const matchingPoolSize = 100000
   const projectContributions = calculateMatchingAmounts(
     allDonations,
     matchingPoolSize

@@ -1,4 +1,3 @@
-import { Label, NumberField } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
 import { useState } from 'react'
 import { useCart } from 'src/components/Cart/CartContext'
@@ -48,13 +47,13 @@ const Project = ({ project }) => {
           <iframe className="w-full" src={project.videoLink} frameBorder="0" />
         )}
       </div>
-      <Card className="sticky top-0 self-start mt-8">
+      <Card className="sticky self-start" style={{ top: '3rem' }}>
         <ContributionBar
           contributionsTotal={project.contributionsTotal}
           currentMatchingAmount={project.currentMatchingAmount}
           goalAmount={project.goalAmount}
         />
-        <div className="p-5">
+        <div className="p-6">
           <Body className="mb-1">
             <Lead as="h3" className="mb-1">
               Contribute
@@ -70,29 +69,49 @@ const Project = ({ project }) => {
             <strong>{currency(project.goalAmount)}</strong> goal?
           </Body>
         </div>
-        <div className="flex flex-wrap items-end p-4 ">
-          <label>
-            Amount (USD)
-            <input
-              type="number"
-              name="amount"
-              value={amount / 100}
-              onChange={(e) => setAmount(e.target.value * 100)}
-              className="input-field"
-              required
-            />
-          </label>
-          <Button variant="secondary" onClick={() => setAmount(2000)}>
-            $20
-          </Button>
-          <Button variant="secondary" onClick={() => setAmount(5000)}>
-            $50
-          </Button>
-        </div>
+        <form onSubmit={() => handleSubmit(amount)}>
+          <div className="flex flex-wrap items-end justify-start px-6 pb-8">
+            <label className="mr-2 ">
+              Amount (USD)
+              <input
+                type="number"
+                name="amount"
+                value={amount / 100}
+                onChange={(e) => setAmount(e.target.value * 100)}
+                className="input-field"
+                required
+                min="5"
+              />
+            </label>
+            <div className="mt-2">
+              <Button
+                className="w-12"
+                variant="secondary"
+                onClick={() => setAmount(2000)}
+              >
+                $20
+              </Button>
+              <Button
+                className="w-12 ml-2"
+                variant="secondary"
+                onClick={() => setAmount(5000)}
+              >
+                $50
+              </Button>
+              <Button
+                className="w-12 ml-2"
+                variant="secondary"
+                onClick={() => setAmount(10000)}
+              >
+                $100
+              </Button>
+            </div>
+          </div>
 
-        <Button className="w-full" onClick={() => handleSubmit(amount)}>
-          Contribute {currency(amount)}
-        </Button>
+          <Button type="submit" className="w-full">
+            Contribute {currency(amount)}
+          </Button>
+        </form>
       </Card>
     </div>
   )
