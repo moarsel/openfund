@@ -20,25 +20,25 @@ export const useSignUp = (
     formLoading: false,
   })
 
-  const [createUser] = useMutation(CREATE_USER_MUTATION, {
-    onCompleted: onComplete,
-  })
+  const [createUser] = useMutation(CREATE_USER_MUTATION)
 
   const onSubmit = (data) => {
     setState({ formError: null, formLoading: true })
     client
       .signup(data.email, data.password)
-      .then((res) => {
-        // create db user
+      .then((res) =>
         createUser({
           variables: { input: { email: data.email, authId: res.id } },
         })
-        return logIn({
+      )
+      .then(() =>
+        logIn({
           email: data.email,
           password: data.password,
           remember: true,
         })
-      })
+      )
+      .then(onComplete)
       .catch((error) =>
         setState({ formError: error.message, formLoading: false })
       )

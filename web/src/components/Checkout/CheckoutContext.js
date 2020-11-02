@@ -57,27 +57,18 @@ export const CheckoutProvider = ({ children }) => {
 
   const setCustomer = async ({ customerSource }) => {
     setLoading(true)
-    try {
-      const res = await API.setCustomer({
-        variables: { input: { customerSource } },
-      })
 
-      if (res.data.setCustomer.customer) {
-        dispatch({
-          type: 'SET_CUSTOMER',
-          payload: res.data.setCustomer.customer,
-        })
-      } else {
-        dispatch({
-          type: 'SET_ERROR',
-          payload: 'Failed to create intialize',
-        })
-      }
-    } catch (e) {
+    const res = await API.setCustomer({
+      variables: { input: { customerSource } },
+    })
+
+    if (res.data.setCustomer.customer) {
       dispatch({
-        type: 'SET_ERROR',
-        payload: 'Failed to create customer',
+        type: 'SET_CUSTOMER',
+        payload: res.data.setCustomer.customer,
       })
+    } else {
+      throw new Error('Failed to intialize customer')
     }
   }
 
