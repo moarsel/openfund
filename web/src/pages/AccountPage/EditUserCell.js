@@ -48,7 +48,7 @@ export const Success = ({ currentUser }) => {
 
   return (
     <div>
-      <Lead as="h2">{currentUser.name}&apos;s Profile Information</Lead>
+      <Lead as="h2">Profile Information</Lead>
       <div>
         <UserForm
           user={currentUser}
@@ -58,7 +58,7 @@ export const Success = ({ currentUser }) => {
         />
       </div>
       <div className="my-6">
-        <Lead as="h2">{currentUser.name}&apos;s contributions</Lead>
+        <Lead as="h2"> Contribution History</Lead>
         {currentUser.Donation.map(
           ({ id, amount, donationTime, transactionId, recipient }) => {
             return (
