@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/223a94b2-a8f5-42dc-9bbc-936d7ee2985f/deploy-status)](https://app.netlify.com/sites/silly-hypatia-fa017a/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/223a94b2-a8f5-42dc-9bbc-936d7ee2985f/deploy-status)](https://app.netlify.com/sites/tryopenfund/deploys)
 
 # OpenFund
 OpenFund is an open source fundraising platform that implements quadratic funding. It's built on Redwood.js using a serverless Jamstack architecture.

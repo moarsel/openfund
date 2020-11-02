@@ -5,7 +5,7 @@ import { PaymentForm } from 'src/components/Checkout'
 
 export const SetPayment = () => (
   <Elements stripe={stripePromise}>
-    <div className="payment-method">
+    <div className="max-w-xl">
       <PaymentForm />
     </div>
   </Elements>

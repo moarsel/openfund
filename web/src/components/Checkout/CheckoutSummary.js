@@ -7,7 +7,9 @@ const CheckoutSummaryItem = ({ item }) => (
   <div key={item.id} className="flex flex-wrap justify-between pb-3">
     <div>{item.name}</div>
     <div>{currency(item.amount)}</div>
-    <div>{item.shortDescription}</div>
+    <div>
+      <em>{item.shortDescription}</em>
+    </div>
   </div>
 )
 
@@ -21,7 +23,7 @@ const CartSummary = () => {
           <CheckoutSummaryItem key={item.id} item={item} />
         ))}
       <div className="flex flex-wrap justify-between">
-        Total:
+        Total
         <div>{currency(cart.cartTotal)}</div>
       </div>
     </div>
