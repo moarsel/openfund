@@ -6,11 +6,8 @@ const AboutPage = () => {
     <GlobalLayout>
       <PageHeading className="mt-8 mb-5">What is this?</PageHeading>
       <Body withMargins>
-        RxC Openfund takes QF to incentivize and govern funding for the{' '}
-        <a
-          className="underline"
-          href="mailto:matt@radicalxchange.org?subject='OpenFund Contribution Inquiry'"
-        >
+        RxC OpenFund takes QF to incentivize and govern funding for the{' '}
+        <a className="underline" href="https://radicalxchange.org/">
           RadicalxChange Foundation
         </a>
         . It allows people to contribute to their favorite RxC projects, e.g.
