@@ -76,6 +76,8 @@ export function SocialShare({ children, className = '', ...props }) {
             : ''
         )}&subject=${encodeURIComponent(document.title)}`}
         title="Mail"
+        target="_blank"
+        rel="noreferrer"
         className="flex flex-wrap justify-center ml-2 rounded-md align-center"
         style={{ width: '2em', height: '2em', background: '#555' }}
       >

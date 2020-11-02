@@ -1,7 +1,7 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
 import UserForm from './UserForm'
-import { Lead } from 'src/components/UI'
+import { Body, Lead } from 'src/components/UI'
 import { Card } from 'src/components/UI/Card/Card'
 import { currency } from 'src/utils'
 
@@ -59,6 +59,12 @@ export const Success = ({ currentUser }) => {
       </div>
       <div className="my-6">
         <Lead as="h2"> Contribution History</Lead>
+        {!currentUser.Donation.length && (
+          <Card className="p-5 my-3">
+            <Lead>Nothing yet</Lead>
+            <Body>Once you make a contribution, it will be listed here. </Body>
+          </Card>
+        )}
         {currentUser.Donation.map(
           ({ id, amount, donationTime, transactionId, recipient }) => {
             return (
