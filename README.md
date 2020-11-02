@@ -5,6 +5,8 @@ OpenFund is an open source fundraising platform that implements quadratic fundin
 
 **View the demo app here: [TryOpenFund.netlify.app](https://tryopenfund.netlify.app/)**
 
+**Video overview of the demo here:** https://www.youtube.com/watch?v=IBWIBQw2U0A
+
 
 ## Why
 
