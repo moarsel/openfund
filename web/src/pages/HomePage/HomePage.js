@@ -5,7 +5,7 @@ import { PageHeading } from 'src/components/UI'
 const HomePage = () => {
   return (
     <GlobalLayout>
-      <PageHeading className="mt-8 mb-3">Projects</PageHeading>
+      <PageHeading className="mt-8 mb-5">Projects</PageHeading>
       <ProjectsCell />
     </GlobalLayout>
   )

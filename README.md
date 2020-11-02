@@ -66,3 +66,5 @@ We rely on several platforms to do the heavy lifting for us.
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/moarsel/openfund"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
 
+
+## Quadratic Funding Algorithm

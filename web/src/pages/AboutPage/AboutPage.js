@@ -4,7 +4,7 @@ import { GlobalLayout } from 'src/layouts'
 const AboutPage = () => {
   return (
     <GlobalLayout>
-      <PageHeading>What is this?</PageHeading>
+      <PageHeading className="mt-8 mb-5">What is this?</PageHeading>
       <Body withMargins>
         RxC Openfund takes QF to incentivize and govern funding for the{' '}
         <a className="underline" href="https://wtfisqf.com/">
