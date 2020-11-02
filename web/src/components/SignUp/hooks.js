@@ -14,7 +14,7 @@ const CREATE_USER_MUTATION = gql`
 export const useSignUp = (
   { onComplete } = { onComplete: () => navigate(routes.confirmEmail()) }
 ) => {
-  const { client } = useAuth()
+  const { client, logIn } = useAuth()
   const [state, setState] = useState({
     formError: null,
     formLoading: false,
@@ -32,6 +32,11 @@ export const useSignUp = (
         // create db user
         createUser({
           variables: { input: { email: data.email, authId: res.id } },
+        })
+        return logIn({
+          email: data.email,
+          password: data.password,
+          remember: true,
         })
       })
       .catch((error) =>

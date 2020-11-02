@@ -1,11 +1,10 @@
 import { useCheckout } from 'src/components/Checkout'
 
 import { SignInForm } from '../SignIn/SignInForm'
-// import { SignUpForm } from '../SignUp/SignUpForm'
 import { useSignIn } from '../SignIn/hooks'
 import { Lead, Loader } from '../UI'
 import { SignUpForm, useSignUp } from '../SignUp'
-import { navigate, routes } from '@redwoodjs/router'
+// import { navigate, routes } from '@redwoodjs/router'
 import { useState } from 'react'
 
 export const SetCustomer = () => {
@@ -17,8 +16,9 @@ export const SetCustomer = () => {
 
   const signup = useSignUp({
     onComplete: () => {
-      setCustomer({ customerSource: 'AUTH' })
-      navigate(routes.confirmEmail())
+      return setCustomer({ customerSource: 'AUTH' })
+      // not needed if netlify autoconfirm is set to no
+      // navigate(routes.confirmEmail())
     },
   })
 
@@ -39,22 +39,20 @@ export const SetCustomer = () => {
       {mode === 'signup' && (
         <div id="form-signup" className="options-item options-item-signin">
           <SignUpForm
-            onSubmit={signup.onSubmit}
+            onSubmit={(data) => signup.onSubmit(data)}
             loading={signup.loading}
             error={signup.error}
           />
         </div>
       )}
       <div className="mt-2">
-        {/* TODO: fix refocus on top of form */}
         {mode === 'login' ? (
-          <a
-            href="#form-login"
+          <button
             className="my-3 font-medium text-gray-900 uppercase whitespace-no-wrap text-md"
             onClick={() => setMode('signup')}
           >
             or Sign Up
-          </a>
+          </button>
         ) : (
           <button
             className="my-3 font-medium text-gray-900 uppercase whitespace-no-wrap text-md"
