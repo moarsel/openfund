@@ -8,6 +8,8 @@
 [web]
   port = 8910
   apiProxyPath = "/.netlify/functions"
+  includeEnvironmentVariables = ['AUTH_API_URL', 'STRIPE_PUBLIC_KEY']
+
 [api]
   port = 8911
 [browser]

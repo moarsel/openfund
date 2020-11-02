@@ -3,7 +3,7 @@
 # OpenFund
 OpenFund is an open source fundraising platform that implements quadratic funding. It's built on Redwood.js using a Jamstack architecture.
 
-**View the demo app here: https://silly-hypatia-fa017a.netlify.app/**
+**View the demo app here: [TryOpenFund.netlify.app](https://tryopenfund.netlify.app/)**
 
 
 ## Why

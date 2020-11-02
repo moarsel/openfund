@@ -2,12 +2,10 @@
   command = "yarn rw build && yarn rw db up --no-db-client --auto-approve && yarn rw db seed && yarn rw dataMigrate up"
   publish = "web/dist"
   functions = "api/dist/functions"
+  environment =
 
 [dev]
   command = "yarn rw dev"
-
-[web]
-  includeEnvironmentVariables = ['AUTH_API_URL', 'STRIPE_PUBLIC_KEY']
 
 [template.environment]
   DATABASE_URL  ="postgres://<user>:<pass>@<url>/<db>?connection_limit=1"
