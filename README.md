@@ -1,7 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/223a94b2-a8f5-42dc-9bbc-936d7ee2985f/deploy-status)](https://app.netlify.com/sites/silly-hypatia-fa017a/deploys)
 
 # OpenFund
-OpenFund is an open source fundraising platform that implements quadratic funding. It's built on Redwood.js using a Jamstack architecture.
+OpenFund is an open source fundraising platform that implements quadratic funding. It's built on Redwood.js using a serverless Jamstack architecture.
 
 **View the demo app here: [TryOpenFund.netlify.app](https://tryopenfund.netlify.app/)**
 
@@ -15,7 +15,7 @@ OpenFund is an open source fundraising platform that implements quadratic fundin
 "We hope that a RxC Quadratic Funding program helps [RadicalxChange Foundation](https://radicalxchange.org/) to attract more contributions from the RxC community and at the same time, allocates our budget to projects that reflect the community needs."
 
 
-## Development Setup
+## Tech Stack
 
 This repository is built with:
 
@@ -25,10 +25,19 @@ This repository is built with:
 * Netlify for managing auth and hosting
 * Postgres for DB hosting
 
+
+## Development Setup
+
 We use Yarn as our package manager. To get the dependencies installed, just do this in the root directory:
 
 ```terminal
 yarn install
+```
+
+Then create some dummy data:
+```terminal
+yarn rw db up
+yarn rw db seed
 ```
 
 ### Fire it up
