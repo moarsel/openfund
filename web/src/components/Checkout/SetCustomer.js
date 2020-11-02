@@ -29,7 +29,7 @@ export const SetCustomer = () => {
   return (
     <div id="form-top" className="max-w-lg mr-4">
       <Lead as="h2" withMargins>
-        Log In or Sign Up
+        Sign up or Log in
       </Lead>
       {mode === 'login' && (
         <div id="form-login" className="options-item options-item-signin">
