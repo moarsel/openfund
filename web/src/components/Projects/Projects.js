@@ -15,7 +15,7 @@ const ProjectsList = ({ projects }) => {
           <Card>
             <img
               src={project.coverImage}
-              className="w-full"
+              className="object-cover w-full h-64"
               width="100"
               height="100"
             />
