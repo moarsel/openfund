@@ -72,7 +72,7 @@ export const CheckoutSummary = () => {
   const { checkout, setPhase } = useCheckout()
 
   return (
-    <Card className="max-w-sm p-6 divide-y-2 divide-dashed sm:mt-5">
+    <Card className="max-w-xs p-6 mt-5 ml-3 divide-y-2 divide-dashed md:mt-0">
       <CartSummary />
       {checkout?.customer?.shipping ? (
         <ShippingSummary

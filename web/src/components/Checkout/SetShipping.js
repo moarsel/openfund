@@ -23,7 +23,7 @@ export const SetShipping = () => {
     <Form
       onSubmit={onSubmit}
       validation={{ mode: 'onBlur' }}
-      className="space-y-4"
+      className="max-w-md space-y-4 "
     >
       {state.error && <p className="form-error">{state.error}</p>}
       <Lead as="h2">Billing Details</Lead>
