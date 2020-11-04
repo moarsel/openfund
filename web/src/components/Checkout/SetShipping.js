@@ -67,7 +67,7 @@ export const SetShipping = () => {
           errorClassName="input-error"
         />
       </div>
-      <div className="field-group">
+      <div className="flex items-end justify-between">
         <div className="field" style={{ width: '66.666666%' }}>
           <Label name="city" errorClassName="label-error">
             City

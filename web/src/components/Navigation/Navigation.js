@@ -20,7 +20,9 @@ const Navigation = () => {
   return (
     <header>
       <Navbar utilitySection={sideMenu}>
-        <Navlink to="/">Projects</Navlink>
+        <Navlink className="hidden sm:block" to="/">
+          Projects
+        </Navlink>
         <Navlink to="/about">About</Navlink>
       </Navbar>
     </header>

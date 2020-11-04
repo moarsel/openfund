@@ -16,7 +16,7 @@ export const SignInForm = ({ onSubmit, loading, error }) => (
     className="space-y-4 has-block-loader"
   >
     {loading && <Loader type="BLOCK" />}
-    {error && <p className="form-error">{error}</p>}
+    <p className="form-error">{error}</p>
     <div className="field">
       <Label name="email" errorClassName="label-error">
         Email

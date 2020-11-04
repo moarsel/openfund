@@ -52,7 +52,6 @@ input:focus,
 .input-error { border-color: red; }
 .field-error { font-size: 0.8rem; }
 .form-error,.label-error,.field-error,.text-error { color: red; }
-.field-group { display: flex; justify-content: space-between; }
 .ui-loader {
   position: fixed;
   z-index: 9999;

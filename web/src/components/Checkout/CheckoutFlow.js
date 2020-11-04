@@ -19,7 +19,7 @@ export const CheckoutFlow = () => {
   }, [])
 
   return (
-    <div className="checkout-flow has-block-loader">
+    <div className="w-full checkout-flow has-block-loader">
       {checkout.loading && <Loader type="BLOCK" />}
       {checkout.phase === PHASE.SET_CUSTOMER ? (
         <SetCustomer />
