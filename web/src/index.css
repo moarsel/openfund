@@ -38,7 +38,12 @@
 }
 
 
-
+.stripe-input{
+  padding: 0.75rem 0.5rem 2rem 1rem;
+  margin: 0.5rem 0 0 0;
+  border: 1px solid gray;
+  border-radius: 0.25rem;
+}
 
 .form-error,.label-error,.field-error,.text-error { color: #800; display: block}
 

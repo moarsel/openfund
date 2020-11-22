@@ -21,10 +21,11 @@ export function FormField({
       >
         {label}
       </Component>
-      {React.cloneElement(children, {
-        id: fieldId,
-        'aria-describedby': describedById,
-      })}
+      {children &&
+        React.cloneElement(children, {
+          id: fieldId,
+          'aria-describedby': describedById,
+        })}
       <span
         className="block"
         style={description ? { minHeight: '2rem' } : {}}

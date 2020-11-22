@@ -80,52 +80,58 @@ export const SetShipping = () => {
         />
       </FormField>
       <div className="flex items-end justify-between">
-        <FormField
-          label="City"
-          description={<FieldError name="city" className="field-error" />}
-        >
-          <TextField
-            as={RWTextField}
-            name="city"
-            placeholder="Bishop"
-            defaultValue={checkout?.customer?.shipping?.address?.city}
-            validation={{
-              required: 'City is required.',
-            }}
-          />
-        </FormField>
-
-        <FormField
-          label="State"
-          description={<FieldError name="state" className="field-error" />}
-        >
-          <TextField
-            as={RWTextField}
-            name="state"
-            placeholder="AI"
-            defaultValue={checkout?.customer?.shipping?.address?.state}
-            validation={{
-              required: 'State is required.',
-            }}
-          />
-        </FormField>
-
-        <FormField
-          label="Postal Code"
-          description={<FieldError name="postalCode" className="field-error" />}
-        >
-          <TextField
-            as={RWTextField}
-            name="postalCode"
-            placeholder="W9 1ER"
-            defaultValue={checkout?.customer?.shipping?.address?.postalCode}
-            validation={{
-              required: 'Postal Code is required.',
-            }}
-          />
-        </FormField>
+        <div>
+          <FormField
+            label="City"
+            description={<FieldError name="city" className="field-error" />}
+          >
+            <TextField
+              as={RWTextField}
+              name="city"
+              placeholder="Bishop"
+              defaultValue={checkout?.customer?.shipping?.address?.city}
+              validation={{
+                required: 'City is required.',
+              }}
+            />
+          </FormField>
+        </div>
+        <div>
+          <FormField
+            label="State"
+            description={<FieldError name="state" className="field-error" />}
+          >
+            <TextField
+              as={RWTextField}
+              name="state"
+              placeholder="AI"
+              defaultValue={checkout?.customer?.shipping?.address?.state}
+              validation={{
+                required: 'State is required.',
+              }}
+            />
+          </FormField>
+        </div>
+        <div>
+          <FormField
+            label="Postal Code"
+            description={
+              <FieldError name="postalCode" className="field-error" />
+            }
+          >
+            <TextField
+              as={RWTextField}
+              name="postalCode"
+              placeholder="W9 1ER"
+              defaultValue={checkout?.customer?.shipping?.address?.postalCode}
+              validation={{
+                required: 'Postal Code is required.',
+              }}
+            />
+          </FormField>
+        </div>
       </div>
-      <Button type="submit" disabled={state.loading}>
+      <Button type="submit" className="mt-3" disabled={state.loading}>
         Next: Payment Method
       </Button>
     </Form>
