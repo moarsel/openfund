@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Form, Label, TextField, FieldError } from '@redwoodjs/forms'
+import { Form, TextField as RWTextField, FieldError } from '@redwoodjs/forms'
 
 import { useCheckout } from 'src/components/Checkout'
 import { Button } from '../UI/Button/Button'
-import { Lead } from '../UI'
+import { FormField, TextField, Lead } from '../UI'
 
 export const SetShipping = () => {
   const { checkout, setShipping } = useCheckout()
@@ -23,105 +23,111 @@ export const SetShipping = () => {
     <Form
       onSubmit={onSubmit}
       validation={{ mode: 'onBlur' }}
-      className="max-w-md space-y-4 "
+      className="max-w-md"
     >
       {state.error && <p className="form-error">{state.error}</p>}
       <Lead as="h2">Billing Details</Lead>
-      <div className="field">
-        <Label name="name" errorClassName="label-error">
-          Name
-        </Label>
+      <FormField
+        label="Name"
+        description={<FieldError name="name" className="field-error" />}
+      >
         <TextField
+          as={RWTextField}
           name="name"
-          placeholder="Bender Bending Rodriguez"
+          placeholder="First Middle Last"
           defaultValue={checkout?.customer?.shipping?.name}
           validation={{
             required: 'Name is required',
           }}
-          errorClassName="input-error"
         />
-        <FieldError name="name" className="field-error" />
-      </div>
-
-      <div className="field">
-        <Label name="line1" errorClassName="label-error">
-          Street
-        </Label>
+      </FormField>
+      <FormField
+        label="Phone Number"
+        description={<FieldError name="phone" className="field-error" />}
+      >
         <TextField
+          as={RWTextField}
+          name="phone"
+          placeholder="1 (234)567-8910"
+          defaultValue={checkout?.customer?.shipping?.phone}
+          validation={{
+            required: 'Phone is required',
+          }}
+        />
+      </FormField>
+
+      <FormField
+        label="Street"
+        description={<FieldError name="line1" className="field-error" />}
+      >
+        <TextField
+          as={RWTextField}
           name="line1"
           placeholder="123 Short Circuit Drive"
           defaultValue={checkout?.customer?.shipping?.address?.line1}
           validation={{
             required: 'Street address is required',
           }}
-          errorClassName="input-error"
         />
-        <FieldError name="line1" className="field-error" />
-      </div>
+      </FormField>
 
-      <div className="field" style={{ paddingTop: '0' }}>
+      <FormField label="Unit">
         <TextField
+          as={RWTextField}
           name="line2"
           defaultValue={checkout?.customer?.shipping?.address?.line2}
           placeholder="#5"
-          errorClassName="input-error"
         />
-      </div>
+      </FormField>
       <div className="flex items-end justify-between">
-        <div className="field" style={{ width: '66.666666%' }}>
-          <Label name="city" errorClassName="label-error">
-            City
-          </Label>
+        <FormField
+          label="City"
+          description={<FieldError name="city" className="field-error" />}
+        >
           <TextField
+            as={RWTextField}
             name="city"
             placeholder="Bishop"
             defaultValue={checkout?.customer?.shipping?.address?.city}
             validation={{
               required: 'City is required.',
             }}
-            errorClassName="input-error"
           />
-          <FieldError name="city" className="field-error" />
-        </div>
+        </FormField>
 
-        <div className="field" style={{ width: '33.333333%' }}>
-          <Label name="state" errorClassName="label-error">
-            State
-          </Label>
+        <FormField
+          label="State"
+          description={<FieldError name="state" className="field-error" />}
+        >
           <TextField
+            as={RWTextField}
             name="state"
             placeholder="AI"
             defaultValue={checkout?.customer?.shipping?.address?.state}
             validation={{
               required: 'State is required.',
             }}
-            errorClassName="input-error"
           />
-          <FieldError name="state" className="field-error" />
-        </div>
+        </FormField>
 
-        <div className="field" style={{ width: '33.333333%' }}>
-          <Label name="postalCode" errorClassName="label-error">
-            Postal Code
-          </Label>
+        <FormField
+          label="Postal Code"
+          description={<FieldError name="postalCode" className="field-error" />}
+        >
           <TextField
+            as={RWTextField}
             name="postalCode"
             placeholder="W9 1ER"
             defaultValue={checkout?.customer?.shipping?.address?.postalCode}
             validation={{
               required: 'Postal Code is required.',
             }}
-            errorClassName="input-error"
           />
-          <FieldError name="postalCode" className="field-error" />
-        </div>
+        </FormField>
       </div>
-
-      <div className="field">
-        <Button type="submit" disabled={state.loading}>
-          Next: Payment Method
-        </Button>
-      </div>
+      <Button type="submit" disabled={state.loading}>
+        Next: Payment Method
+      </Button>
     </Form>
   )
 }

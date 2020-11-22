@@ -1,27 +1,26 @@
 import {
   Form,
-  Label,
-  TextField,
-  PasswordField,
+  TextField as RWTextField,
+  PasswordField as RWPasswordField,
   FieldError,
 } from '@redwoodjs/forms'
 
-import { Loader } from '../UI'
-import { Button } from '../UI/Button/Button'
+import { Loader, TextField, Button, FormField } from '../UI'
 
 export const SignInForm = ({ onSubmit, loading, error }) => (
   <Form
     onSubmit={onSubmit}
     validation={{ mode: 'onBlur' }}
-    className="space-y-4 has-block-loader"
+    className="has-block-loader"
   >
     {loading && <Loader type="BLOCK" />}
     <p className="form-error">{error}</p>
-    <div className="field">
-      <Label name="email" errorClassName="label-error">
-        Email
-      </Label>
+    <FormField
+      label="Email"
+      description={<FieldError name="email" className="field-error" />}
+    >
       <TextField
+        as={RWTextField}
         autoFocus
         name="email"
         validation={{
@@ -31,15 +30,15 @@ export const SignInForm = ({ onSubmit, loading, error }) => (
             message: 'Please enter a valid email address',
           },
         }}
-        errorClassName="input-error"
       />
-      <FieldError name="email" className="field-error" />
-    </div>
-    <div className="field">
-      <Label name="password" errorClassName="label-error">
-        Password
-      </Label>
-      <PasswordField
+    </FormField>
+    <FormField
+      label="Password"
+      description={<FieldError name="password" className="field-error" />}
+    >
+      <TextField
+        as={RWPasswordField}
+        type="password"
         name="password"
         validation={{
           required: 'Password is required.',
@@ -48,14 +47,12 @@ export const SignInForm = ({ onSubmit, loading, error }) => (
             message: 'Password must have at least 6 characters',
           },
         }}
-        errorClassName="input-error"
+        required
+        minLength={6}
       />
-      <FieldError name="password" className="field-error" />
-    </div>
-    <div className="field">
-      <Button type="submit" disabled={loading}>
-        Log In
-      </Button>
-    </div>
+    </FormField>
+    <Button type="submit" disabled={loading}>
+      Log In
+    </Button>
   </Form>
 )

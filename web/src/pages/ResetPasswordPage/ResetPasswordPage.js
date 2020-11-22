@@ -2,16 +2,10 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '@redwoodjs/auth'
 import { useParams, navigate, routes } from '@redwoodjs/router'
-import {
-  Form,
-  Label,
-  PasswordField,
-  FieldError,
-  Submit,
-} from '@redwoodjs/forms'
+import { Form, PasswordField, FieldError, Submit } from '@redwoodjs/forms'
 
 import { GlobalLayout, SimpleLayout } from 'src/layouts'
-import { PageHeading } from 'src/components/UI'
+import { FormField, TextField, PageHeading } from 'src/components/UI'
 
 const ResetPasswordPage = () => {
   const { client } = useAuth()
@@ -68,48 +62,47 @@ const ResetPasswordPage = () => {
         ) : tokenError ? (
           <p>{tokenError}</p>
         ) : user ? (
-          <Form
-            formMethods={formMethods}
-            onSubmit={onSubmit}
-            className="space-y-4"
-          >
+          <Form formMethods={formMethods} onSubmit={onSubmit}>
             {formError && <p className="form-error">{formError}</p>}
 
-            <div className="field">
-              <Label name="password" errorClassName="label-error">
-                Password
-              </Label>
-              <PasswordField
+            <FormField
+              label="Password"
+              description={
+                <FieldError name="password" className="field-error" />
+              }
+            >
+              <TextField
+                as={PasswordField}
                 name="password"
                 validation={{
                   required: 'Password is required.',
                 }}
-                errorClassName="input-error"
               />
-              <FieldError name="password" className="field-error" />
-            </div>
+            </FormField>
 
-            <div className="field">
-              <Label name="passwordConfirmation" errorClassName="label-error">
-                Confirm Password
-              </Label>
-              <PasswordField
+            <FormField
+              label="Confirm Password"
+              description={
+                <FieldError
+                  name="passwordConfirmation"
+                  className="field-error"
+                />
+              }
+            >
+              <TextField
+                as={PasswordField}
                 name="passwordConfirmation"
                 validation={{
                   required: 'Password Confirmation is required.',
                   validate: (value) =>
                     value === currentPassword || 'The passwords do not match.',
                 }}
-                errorClassName="input-error"
               />
-              <FieldError name="passwordConfirmation" className="field-error" />
-            </div>
+            </FormField>
 
-            <div className="field">
-              <Submit className="btn" disabled={formLoading}>
-                Submit
-              </Submit>
-            </div>
+            <Submit className="btn" disabled={formLoading}>
+              Submit
+            </Submit>
           </Form>
         ) : (
           <p>Password reset email sent. Please check your inbox.</p>

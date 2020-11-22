@@ -11,6 +11,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        primary: '#000',
         gray: {
           100: '#f5f5f5',
           200: '#eeeeee',
@@ -24,6 +25,22 @@ module.exports = {
         },
       },
     },
+    customForms: (theme) => ({
+      default: {
+        // 'input, textarea, multiselect, select': {
+        //   borderRadius: 0,
+        //   borderRadiusTopLeft: theme('borderRadius.sm'),
+        //   borderRadiusTopRight: theme('borderRadius.sm'),
+        //   boxShadow: '0 2px 0 0 #000',
+        //   borderWidth: '0',
+        //   '&:focus': {
+        //     borderWidth: '0',
+        //     boxShadow: '0 0 0 2px #000',
+        //     borderColor: 'transparent',
+        //   },
+        // },
+      },
+    }),
   },
   variants: {},
   plugins: [require('@tailwindcss/custom-forms')],

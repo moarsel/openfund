@@ -35,10 +35,10 @@ const ShippingSummary = ({ shipping, setPhase }) => {
     <div>
       <h3 className="mt-4 font-semibold uppercase text-md">
         Billing details{' '}
-        <span className="text-small">
+        <span className="text-sm">
           (
           <button
-            className="btn-link text-small"
+            className="text-sm underline"
             type="button"
             onClick={() => setPhase(PHASE.SET_SHIPPING)}
           >

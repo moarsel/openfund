@@ -10,7 +10,7 @@ const ProjectsList = ({ projects }) => {
           to={routes.project({ id: project.id })}
           title={project.name + ' details'}
           key={project.id}
-          className="w-full my-1 rounded focus:opacity-75 hover:opacity:75"
+          className="w-full my-1 rounded shadow-lg focus:opacity-75 hover:opacity:75"
         >
           <Card>
             <img

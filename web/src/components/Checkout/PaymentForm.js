@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
-import { Form, Label } from '@redwoodjs/forms'
+import { Form } from '@redwoodjs/forms'
 
 import { CARD_ELEMENT_OPTIONS } from 'src/lib/stripe'
 import { useCheckout, PHASE } from 'src/components/Checkout'
 
-import { Lead, Loader } from '../UI'
+import { FormField, Lead, Loader } from '../UI'
 import { Button } from '../UI/Button/Button'
 
 export const PaymentForm = () => {
@@ -76,16 +76,18 @@ export const PaymentForm = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit} className="mr-4 space-y-4 has-block-loader ">
+    <Form onSubmit={onSubmit} className="mr-4 has-block-loader ">
       {state.loading && <Loader type="BLOCK" />}
       {state.error && <p className="form-error">{state.error}</p>}
       <Lead as="h2">Payment Method</Lead>
-      <div className="field">
-        <Label>Card</Label>
+      <FormField
+        label="Card"
+        description="Test card: 4242 4242 4242 4242 : 04/24 : 242 : 42424"
+      >
         <CardElement options={CARD_ELEMENT_OPTIONS} />
-      </div>
-      <p>Test card: 4242 4242 4242 4242 : 04/24 : 242 : 42424</p>
-      <p className="text-small">
+      </FormField>
+
+      <p className="text-sm">
         By clicking &ldquo;Submit order and pay&rdquo; below you authorize us to
         send instructions to the financial institution that issued your card to
         take payment from your account.

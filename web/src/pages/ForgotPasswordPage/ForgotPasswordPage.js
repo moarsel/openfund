@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { Form, Label, TextField, FieldError } from '@redwoodjs/forms'
+import { Form, TextField as RWTextField, FieldError } from '@redwoodjs/forms'
 import { useAuth } from '@redwoodjs/auth'
 import { navigate, routes } from '@redwoodjs/router'
 
 import { GlobalLayout } from 'src/layouts'
-import { PageHeading } from 'src/components/UI'
-import { Button } from 'src/components/UI/Button/Button'
+import { FormField, PageHeading, Button, TextField } from 'src/components/UI'
 
 const ForgotPasswordPage = () => {
   const { client } = useAuth()
@@ -33,18 +32,14 @@ const ForgotPasswordPage = () => {
         Please enter your email to receive instructions for resetting your
         password.
       </p>
-      <Form
-        onSubmit={onSubmit}
-        validation={{ mode: 'onBlur' }}
-        className="space-y-4"
-      >
+      <Form onSubmit={onSubmit} validation={{ mode: 'onBlur' }}>
         {formError && <p className="form-error">{formError}</p>}
-
-        <div className="field">
-          <Label name="email" errorClassName="label-error">
-            Email
-          </Label>
+        <FormField
+          label="Email"
+          description={<FieldError name="email" className="field-error" />}
+        >
           <TextField
+            as={RWTextField}
             name="email"
             validation={{
               required: 'Email is required.',
@@ -53,15 +48,11 @@ const ForgotPasswordPage = () => {
                 message: 'Please enter a valid email address',
               },
             }}
-            errorClassName="input-error"
           />
-          <FieldError name="email" className="field-error" />
-        </div>
-        <div className="field">
-          <Button type="submit" disabled={formLoading}>
-            Submit
-          </Button>
-        </div>
+        </FormField>
+        <Button type="submit" disabled={formLoading}>
+          Submit
+        </Button>
       </Form>
     </GlobalLayout>
   )

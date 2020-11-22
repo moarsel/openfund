@@ -1,13 +1,12 @@
 import {
   Form,
-  Label,
-  TextField,
+  TextField as RWTextField,
   PasswordField,
   FieldError,
 } from '@redwoodjs/forms'
 import { useForm } from 'react-hook-form'
 
-import { Button } from '../UI/Button/Button'
+import { Button, TextField, FormField } from '../UI/'
 import { Loader } from '../UI/Loader/Loader'
 
 export const SignUpForm = ({ onSubmit, loading, error }) => {
@@ -15,14 +14,15 @@ export const SignUpForm = ({ onSubmit, loading, error }) => {
   const currentPassword = formMethods.watch('password', '')
 
   return (
-    <Form formMethods={formMethods} onSubmit={onSubmit} className="space-y-4">
+    <Form formMethods={formMethods} onSubmit={onSubmit}>
       {error && <p className="form-error">{error}</p>}
       {loading && <Loader type="BLOCK" />}
-      <div className="field">
-        <Label name="email" errorClassName="label-error">
-          Email
-        </Label>
+      <FormField
+        label="Email"
+        description={<FieldError name="email" className="field-error" />}
+      >
         <TextField
+          as={RWTextField}
           autoFocus
           name="email"
           validation={{
@@ -32,16 +32,16 @@ export const SignUpForm = ({ onSubmit, loading, error }) => {
               message: 'Please enter a valid email address',
             },
           }}
-          errorClassName="input-error"
+          required
         />
-        <FieldError name="email" className="field-error" />
-      </div>
-      <div className="field">
-        <Label name="password" errorClassName="label-error">
-          Password
-        </Label>
+      </FormField>
+      <FormField
+        label="Password"
+        description={<FieldError name="password" className="field-error" />}
+      >
         <PasswordField
           name="password"
+          className="form-input"
           validation={{
             required: 'Password is required.',
             minLength: {
@@ -49,30 +49,31 @@ export const SignUpForm = ({ onSubmit, loading, error }) => {
               message: 'Password must have at least 6 characters',
             },
           }}
-          errorClassName="input-error"
+          required
+          minLength={6}
         />
-        <FieldError name="password" className="field-error" />
-      </div>
-      <div className="field">
-        <Label name="passwordConfirmation" errorClassName="label-error">
-          Confirm Password
-        </Label>
+      </FormField>
+      <FormField
+        label="Confirm Password"
+        description={
+          <FieldError name="passwordConfirmation" className="field-error" />
+        }
+      >
         <PasswordField
+          className="form-input"
           name="passwordConfirmation"
           validation={{
             required: 'Password Confirmation is required.',
             validate: (value) =>
               value === currentPassword || 'The passwords do not match.',
           }}
-          errorClassName="input-error"
+          required
         />
-        <FieldError name="passwordConfirmation" className="field-error" />
-      </div>
-      <div className="field">
-        <Button type="submit" disabled={loading && !error}>
-          Sign Up
-        </Button>
-      </div>
+      </FormField>
+
+      <Button type="submit" disabled={loading && !error}>
+        Sign Up
+      </Button>
     </Form>
   )
 }

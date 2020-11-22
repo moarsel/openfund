@@ -2,7 +2,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import { useState } from 'react'
 import { useCart } from 'src/components/Cart/CartContext'
 import { currency } from 'src/utils'
-import { Body, Lead, PageHeading } from '../UI'
+import { Body, FormField, Lead, PageHeading, TextField } from '../UI'
 import { Button } from '../UI/Button/Button'
 import { Card } from '../UI/Card/Card'
 import { ContributionBar } from '../UI/ContributionBar/ContributionBar'
@@ -57,7 +57,7 @@ const Project = ({ project, endDate }) => {
           </div>
         )}
       </div>
-      <Card className="sticky self-start" style={{ top: '3rem' }}>
+      <Card className="sticky self-start shadow-lg" style={{ top: '3rem' }}>
         <ContributionBar
           contributionsTotal={project.contributionsTotal}
           currentMatchingAmount={project.currentMatchingAmount}
@@ -66,7 +66,7 @@ const Project = ({ project, endDate }) => {
         <div className="p-6">
           <Body className="mb-1">
             <Lead as="h3" className="mb-1">
-              Contribute
+              Your Contribution
             </Lead>
             <strong>{project.contributorCount}</strong> people have raised{' '}
             <strong>{currency(project.contributionsTotal)}</strong> so far.
@@ -86,37 +86,43 @@ const Project = ({ project, endDate }) => {
             ?
           </Body>
         </div>
-        <form onSubmit={() => handleSubmit(amount)}>
-          <div className="flex flex-wrap items-end justify-start px-6 pb-8">
-            <label className="mr-2 ">
-              Amount (USD)
-              <input
-                type="number"
-                name="amount"
-                value={amount / 100}
-                onChange={(e) => setAmount(e.target.value * 100)}
-                className="input-field"
-                required
-                min="5"
-              />
-            </label>
+        <form onSubmit={() => handleSubmit(amount)} className="text-center">
+          <div className="flex flex-wrap items-end justify-start px-6 pb-6 text-left">
+            <div className="w-40 mr-2 ">
+              <FormField label="Amount (USD)">
+                <TextField
+                  type="number"
+                  name="amount"
+                  value={amount / 100}
+                  onChange={(e) => setAmount(e.target.value * 100)}
+                  className=" input-field"
+                  required
+                  min="5"
+                />
+              </FormField>
+            </div>
             <div className="mt-2">
               <Button
-                className="w-12"
+                className={`w-12 mr-2 ${amount === 2000 ? ' bg-gray-300' : ''}`}
                 variant="secondary"
+                aria-pressed={amount === 2000}
                 onClick={() => setAmount(2000)}
               >
                 $20
               </Button>
               <Button
-                className="w-12 ml-2"
+                className={`w-12 mr-2 ${amount === 5000 ? ' bg-gray-300' : ''}`}
                 variant="secondary"
+                aria-pressed={amount === 5000}
                 onClick={() => setAmount(5000)}
               >
                 $50
               </Button>
               <Button
-                className="w-12 ml-2"
+                className={`w-12 mr-2 ${
+                  amount === 10000 ? ' bg-gray-300' : ''
+                }`}
+                aria-pressed={amount === 10000}
                 variant="secondary"
                 onClick={() => setAmount(10000)}
               >
@@ -125,7 +131,7 @@ const Project = ({ project, endDate }) => {
             </div>
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="mb-4">
             Contribute {currency(amount)}
           </Button>
         </form>

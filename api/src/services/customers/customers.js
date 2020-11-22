@@ -28,6 +28,7 @@ export const setCustomerShipping = async ({ id, input }) => {
   const customer = await stripe.customers.update(id, {
     shipping: {
       name: input.name,
+      phone: input.phone,
       address: {
         line1: input.line1,
         line2: input.line2,

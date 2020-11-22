@@ -9,6 +9,7 @@ export const schema = gql`
 
   type Shipping {
     name: String
+    phone: String!
     address: Address
   }
 

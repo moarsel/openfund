@@ -9,6 +9,7 @@ export const SET_CUSTOMER = gql`
         email
         shipping {
           name
+          phone
           address {
             line1
             line2
@@ -33,6 +34,7 @@ export const SET_SHIPPING = gql`
         email
         shipping {
           name
+          phone
           address {
             line1
             line2
