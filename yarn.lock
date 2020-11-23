@@ -2104,7 +2104,7 @@
     terminal-link "^2.1.1"
     yargs "^16.0.3"
 
-"@redwoodjs/core@^0.20.1", "@redwoodjs/core@^0.21.0":
+"@redwoodjs/core@^0.21.0":
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/@redwoodjs/core/-/core-0.21.0.tgz#288de04ef2cb2ecea56a8c9233e9c5d88b6a1f45"
   integrity sha512-Xv8NtPbNwf9D9FWUU91OSk/iKB+PEQ+f0W/KLyO7D967Fbo3fER5u8/n+QgOlAMguuFI43wYkWHuOVDaD6Z+/g==
