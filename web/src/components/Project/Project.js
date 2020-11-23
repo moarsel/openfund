@@ -33,7 +33,13 @@ const Project = ({ project, endDate }) => {
   return (
     <div className="relative grid grid-cols-1 gap-4 md:grid-cols-3 justify-items-auto">
       <div className="col-span-2">
-        <img src={project.coverImage} alt="project image" className="w-full" />
+        <img
+          src={project.coverImage}
+          alt="project image"
+          className="w-full"
+          width="100%"
+          height="100%"
+        />
         <SocialShare className="justify-end">Share</SocialShare>
         <PageHeading>{project.name} </PageHeading>
         <Lead>{project.shortDescription}</Lead>
