@@ -7,6 +7,7 @@ export const schema = gql`
 
   type Query {
     fundingRounds: [FundingRound!]!
+    fundingRound: FundingRound
   }
 
   input CreateFundingRoundInput {

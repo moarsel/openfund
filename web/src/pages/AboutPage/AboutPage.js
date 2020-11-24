@@ -37,10 +37,13 @@ const AboutPage = () => {
       <Lead>Can I contribute?</Lead>
       <Body withMargins>
         Yes! Please reach out to{' '}
-        <a href="mailto:matt@radicalxchange.org?subject='OpenFund Contribution Inquiry'">
+        <a
+          className="underline"
+          href="mailto:matt@radicalxchange.org?subject='OpenFund Contribution Inquiry'"
+        >
           RadicalxChange Foundation
         </a>{' '}
-        to back the next round
+        to back the next round.
       </Body>
 
       <Body withMargins>
