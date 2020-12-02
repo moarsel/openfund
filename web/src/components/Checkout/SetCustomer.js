@@ -48,14 +48,14 @@ export const SetCustomer = () => {
       <div className="mt-2">
         {mode === 'login' ? (
           <button
-            className="my-3 font-medium text-gray-900 uppercase whitespace-no-wrap text-md"
+            className="my-3 font-medium text-gray-900 uppercase whitespace-nowrap text-md"
             onClick={() => setMode('signup')}
           >
             or Sign Up
           </button>
         ) : (
           <button
-            className="my-3 font-medium text-gray-900 uppercase whitespace-no-wrap text-md"
+            className="my-3 font-medium text-gray-900 uppercase whitespace-nowrap text-md"
             onClick={() => setMode('login')}
           >
             or Log in

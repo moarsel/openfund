@@ -1,9 +1,6 @@
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
   purge: [],
+  darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
       display: ['"Messer Condensed"', 'sans-serif'],
@@ -26,23 +23,6 @@ module.exports = {
         },
       },
     },
-    customForms: (theme) => ({
-      default: {
-        // 'input, textarea, multiselect, select': {
-        //   borderRadius: 0,
-        //   borderRadiusTopLeft: theme('borderRadius.sm'),
-        //   borderRadiusTopRight: theme('borderRadius.sm'),
-        //   boxShadow: '0 2px 0 0 #000',
-        //   borderWidth: '0',
-        //   '&:focus': {
-        //     borderWidth: '0',
-        //     boxShadow: '0 0 0 2px #000',
-        //     borderColor: 'transparent',
-        //   },
-        // },
-      },
-    }),
   },
-  variants: {},
-  plugins: [require('@tailwindcss/custom-forms')],
+  plugins: [require('@tailwindcss/forms')],
 }

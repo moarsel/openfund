@@ -39,7 +39,8 @@ export const SignUpForm = ({ onSubmit, loading, error }) => {
         label="Password"
         description={<FieldError name="password" className="field-error" />}
       >
-        <PasswordField
+        <TextField
+          as={PasswordField}
           name="password"
           className="form-input"
           validation={{
@@ -59,7 +60,8 @@ export const SignUpForm = ({ onSubmit, loading, error }) => {
           <FieldError name="passwordConfirmation" className="field-error" />
         }
       >
-        <PasswordField
+        <TextField
+          as={PasswordField}
           className="form-input"
           name="passwordConfirmation"
           validation={{

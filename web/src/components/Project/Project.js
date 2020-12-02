@@ -115,7 +115,7 @@ const Project = ({ project, endDate }) => {
               <div className="mt-2">
                 <Button
                   className={`w-12 mr-2 ${
-                    amount === 2000 ? ' bg-gray-300' : ''
+                    amount === 2000 ? ' bg-gray-100' : ''
                   }`}
                   variant="secondary"
                   aria-pressed={amount === 2000}
@@ -125,7 +125,7 @@ const Project = ({ project, endDate }) => {
                 </Button>
                 <Button
                   className={`w-12 mr-2 ${
-                    amount === 5000 ? ' bg-gray-300' : ''
+                    amount === 5000 ? ' bg-gray-100' : ''
                   }`}
                   variant="secondary"
                   aria-pressed={amount === 5000}
@@ -135,7 +135,7 @@ const Project = ({ project, endDate }) => {
                 </Button>
                 <Button
                   className={`w-12 mr-2 ${
-                    amount === 10000 ? ' bg-gray-300' : ''
+                    amount === 10000 ? ' bg-gray-100' : ''
                   }`}
                   aria-pressed={amount === 10000}
                   variant="secondary"

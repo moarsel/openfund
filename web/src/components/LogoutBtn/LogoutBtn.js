@@ -10,7 +10,7 @@ const SignoutBtn = () => {
 
   return (
     <button
-      className="px-3 py-2 font-medium text-gray-900 uppercase whitespace-no-wrap rounded-t-sm text-md focus:outline-none focus:text-gray-900 focus:bg-gray-300"
+      className="px-3 py-2 font-medium text-gray-900 uppercase rounded-t-sm whitespace-nowrap text-md focus:outline-none focus:text-gray-900 focus:bg-gray-300"
       onClick={() => onClick()}
     >
       Sign Out
