@@ -14,19 +14,19 @@ export function ContributionBar({
       <div className="relative flex h-5 mb-2 overflow-hidden text-xs bg-gray-300">
         <div
           style={{ width: `${matchingProgress}%` }}
-          className="absolute items-center justify-center h-5 text-center text-white bg-indigo-500 shadow-none whitespace-nowrap"
+          className="absolute items-center justify-center h-5 text-center text-white shadow-none bg-accent whitespace-nowrap"
         ></div>
         <div
           style={{ width: `${contributionProgress}%` }}
-          className="absolute justify-center h-5 text-center text-white bg-green-500 shadow-none whitespace-nowrap"
+          className="absolute justify-center h-5 text-center text-white bg-purple-500 shadow-none whitespace-nowrap"
         ></div>
       </div>
       <div className="flex items-stretch justify-between px-3">
         <div>
-          <span className="inline-block px-2 py-1 ml-1 text-xs font-semibold text-green-800 uppercase bg-green-200 rounded-lg">
+          <span className="inline-block px-2 py-1 ml-1 text-xs font-semibold text-purple-800 uppercase bg-purple-200 rounded-lg">
             {currency(contributionsTotal)} raised
           </span>
-          <span className="inline-block px-2 py-1 ml-1 text-xs font-semibold text-indigo-800 uppercase bg-indigo-200 rounded-lg">
+          <span className="inline-block px-2 py-1 ml-1 text-xs font-semibold text-gray-900 uppercase rounded-lg bg-accent">
             {currency(currentMatchingAmount)} matched
           </span>
         </div>
