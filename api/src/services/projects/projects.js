@@ -6,7 +6,7 @@ export const projects = (args) => {
 }
 
 export const project = ({ id }) => {
-  return db.project.findOne({
+  return db.project.findUnique({
     where: { id },
   })
 }
@@ -43,7 +43,7 @@ export const deleteProject = ({ id }) => {
 }
 
 // export const projectWithContributions = async ({ id }) => {
-//   const project = await db.project.findOne({
+//   const project = await db.project.findUnique({
 //     where: { id },
 //   })
 //   const contributorCount = await db.donation.count({
@@ -65,5 +65,5 @@ export const deleteProject = ({ id }) => {
 
 export const Project = {
   donations: (_obj, { root }) =>
-    db.project.findOne({ where: { id: root.id } }).donations(),
+    db.project.findUnique({ where: { id: root.id } }).donations(),
 }

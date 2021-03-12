@@ -6,7 +6,7 @@ export const donations = () => {
 }
 
 export const donation = ({ id }) => {
-  return db.donation.findOne({
+  return db.donation.findUnique({
     where: { id },
   })
 }
@@ -36,7 +36,7 @@ export const deleteDonation = ({ id }) => {
 
 export const Donation = {
   donor: (_obj, { root }) =>
-    db.donation.findOne({ where: { id: root.id } }).donor(),
+    db.donation.findUnique({ where: { id: root.id } }).donor(),
   recipient: (_obj, { root }) =>
-    db.donation.findOne({ where: { id: root.id } }).recipient(),
+    db.donation.findUnique({ where: { id: root.id } }).recipient(),
 }

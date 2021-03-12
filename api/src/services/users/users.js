@@ -22,7 +22,7 @@ export const users = async () => {
 }
 
 export const userByAuthId = async ({ id }) => {
-  const user = await db.user.findOne({
+  const user = await db.user.findUnique({
     where: { authId: id },
   })
   return user
@@ -34,7 +34,7 @@ export const currentUser = async () => {
 }
 
 export const user = async ({ id }) => {
-  const user = db.user.findOne({
+  const user = db.user.findUnique({
     where: { id },
   })
 
@@ -95,5 +95,5 @@ export const reconcileUsersCustomer = async ({ id }) => {
 
 export const User = {
   Donation: (_obj, { root }) =>
-    db.user.findOne({ where: { id: root.id } }).Donation(),
+    db.user.findUnique({ where: { id: root.id } }).Donation(),
 }
