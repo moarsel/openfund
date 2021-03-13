@@ -34,17 +34,8 @@ const Project = ({ project, endDate }) => {
   return (
     <div className="relative grid grid-cols-1 gap-4 lg:grid-cols-3 justify-items-auto">
       <div className="col-span-2">
-        <img
-          src={project.coverImage}
-          alt="project image"
-          className="w-full"
-          width="100%"
-          height="100%"
-        />
-        <SocialShare className="justify-end">Share</SocialShare>
         <PageHeading>{project.name} </PageHeading>
         <Lead>{project.shortDescription}</Lead>
-        <Body withMargins>{project.longDescription}</Body>
         {project.websiteLink && (
           <Body withMargins>
             Learn more at the{' '}
@@ -54,6 +45,16 @@ const Project = ({ project, endDate }) => {
             .
           </Body>
         )}
+        <img
+          src={project.coverImage}
+          alt="project image"
+          className="w-full"
+          width="100%"
+          height="100%"
+        />
+        <SocialShare className="justify-end">Share</SocialShare>
+        <Body withMargins>{project.longDescription}</Body>
+
         {project.videoLink && (
           <div className="mt-5 embed-responsive aspect-ratio-4/3">
             <iframe

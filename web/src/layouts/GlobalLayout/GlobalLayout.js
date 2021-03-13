@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import Navigation from 'src/components/Navigation'
+import { Footer } from 'src/components/UI/Footer/Footer'
 
 const GlobalLayout = ({ children }) => {
   const mainRef = useRef(null)
@@ -16,13 +17,10 @@ const GlobalLayout = ({ children }) => {
       </a>
       <div className="relative">
         <Navigation />
-        <main
-          ref={mainRef}
-          id="main"
-          className="container px-4 mx-auto my-12 lg:container lg:mx-auto "
-        >
+        <main ref={mainRef} id="main" className="relative ">
           {children}
         </main>
+        <Footer />
       </div>
     </>
   )
