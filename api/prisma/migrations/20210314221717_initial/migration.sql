@@ -24,16 +24,18 @@ CREATE TABLE "Donation" (
 -- CreateTable
 CREATE TABLE "Project" (
     "id" SERIAL NOT NULL,
+    "collectiveId" INTEGER NOT NULL,
     "name" TEXT NOT NULL,
-    "ownerEmail" TEXT NOT NULL,
+    "ownerEmail" TEXT,
     "logo" TEXT NOT NULL,
     "shortDescription" TEXT NOT NULL,
-    "longDescription" TEXT NOT NULL,
-    "coverImage" TEXT NOT NULL,
-    "stripeId" TEXT NOT NULL,
-    "videoLink" TEXT NOT NULL,
-    "websiteLink" TEXT NOT NULL,
-    "goalAmount" INTEGER NOT NULL,
+    "longDescription" TEXT,
+    "coverImage" TEXT,
+    "stripeId" TEXT,
+    "videoLink" TEXT,
+    "websiteLink" TEXT,
+    "githubLink" TEXT,
+    "goalAmount" INTEGER,
     "currentMatchingAmount" INTEGER NOT NULL DEFAULT 0,
     "contributorCount" INTEGER NOT NULL DEFAULT 0,
     "contributionsTotal" INTEGER NOT NULL DEFAULT 0,
@@ -50,6 +52,16 @@ CREATE TABLE "FundingRound" (
     PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "RW_DataMigration" (
+    "version" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "startedAt" TIMESTAMP(3) NOT NULL,
+    "finishedAt" TIMESTAMP(3) NOT NULL,
+
+    PRIMARY KEY ("version")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User.authId_unique" ON "User"("authId");
 
@@ -58,6 +70,9 @@ CREATE UNIQUE INDEX "User.customerId_unique" ON "User"("customerId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User.email_unique" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Project.collectiveId_unique" ON "Project"("collectiveId");
 
 -- AddForeignKey
 ALTER TABLE "Donation" ADD FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;
