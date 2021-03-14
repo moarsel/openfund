@@ -18,20 +18,26 @@ const ProjectsList = ({ projects }) => {
                 {project.name}
               </h2>
               <div className="flex flex-row ml-3">
-                <Link
-                  className="flex flex-row items-center mr-4 text-sm hover:underline text-purple"
-                  title={project.name + ' homepage'}
-                >
-                  <Globe className="mr-2" />
-                  Website
-                </Link>
-                <Link
-                  title={project.name + ' github'}
-                  className="flex flex-row items-center text-sm hover:underline text-purple"
-                >
-                  <GitHub className="mr-2" />
-                  Github
-                </Link>
+                {project.websiteLink && (
+                  <a
+                    href={project.websiteLink}
+                    className="flex flex-row items-center mr-4 text-sm hover:underline text-purple"
+                    title={project.name + ' homepage'}
+                  >
+                    <Globe className="mr-2" />
+                    Website
+                  </a>
+                )}
+                {project.githubLink && (
+                  <a
+                    href={`https//:github.com/${project.githubLink}`}
+                    title={project.name + ' github'}
+                    className="flex flex-row items-center text-sm hover:underline text-purple"
+                  >
+                    <GitHub className="mr-2" />
+                    Github
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -40,8 +46,20 @@ const ProjectsList = ({ projects }) => {
             <p className="text-base italic font-bold text-gray-700">
               {project.shortDescription}
             </p>
-            <p className="text-base text-gray-700">{project.longDescription}</p>
-            <Link to={routes.project({ id: project.id })}>Read more</Link>
+            <p
+              className="text-base text-gray-700"
+              dangerouslySetInnerHTML={{
+                __html:
+                  project.longDescription &&
+                  project.longDescription.substring(0, 200),
+              }}
+            ></p>
+            <Link
+              to={routes.project({ id: project.id })}
+              className="mt-3 button-secondary"
+            >
+              Read more
+            </Link>
           </div>
         </Card>
       ))}

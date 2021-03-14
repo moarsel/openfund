@@ -30,17 +30,19 @@ model Donation {
 
 model Project {
   id                    Int        @id @default(autoincrement())
+  collectiveId          Int        @unique
   name                  String
-  ownerEmail            String
+  ownerEmail            String?
   logo                  String
   shortDescription      String
-  longDescription       String
-  coverImage            String
-  stripeId              String
-  videoLink             String
-  websiteLink           String
+  longDescription       String?
+  coverImage            String?
+  stripeId              String?
+  videoLink             String?
+  websiteLink           String?
+  githubLink            String?
   donations             Donation[]
-  goalAmount            Int
+  goalAmount            Int?
   currentMatchingAmount Int        @default(0)
   contributorCount      Int        @default(0)
   contributionsTotal    Int        @default(0)
@@ -50,4 +52,11 @@ model FundingRound {
   id                 Int      @id @default(autoincrement())
   matchingAmountPool Int
   endDate            DateTime
+}
+
+model RW_DataMigration {
+  version    String   @id
+  name       String
+  startedAt  DateTime
+  finishedAt DateTime
 }

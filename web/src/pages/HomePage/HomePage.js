@@ -2,7 +2,7 @@ import ProjectsCell from 'src/components/Projects/ProjectsCell'
 import { Body, PageHeading } from 'src/components/UI'
 import { Link } from '@redwoodjs/router'
 import { GlobalLayout } from 'src/layouts'
-import BasicLayout from 'src/layouts/SimpleLayout/SimpleLayout'
+import BasicLayout from 'src/layouts/BasicLayout/BasicLayout'
 
 const HomePage = () => {
   return (

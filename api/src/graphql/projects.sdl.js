@@ -1,16 +1,18 @@
 export const schema = gql`
   type Project {
     id: Int!
+    collectiveId: Int!
     name: String!
-    ownerEmail: String!
+    ownerEmail: String
     logo: String!
     shortDescription: String!
-    longDescription: String!
-    coverImage: String!
-    stripeId: String!
-    goalAmount: Int!
-    videoLink: String!
-    websiteLink: String!
+    longDescription: String
+    coverImage: String
+    stripeId: String
+    goalAmount: Int
+    videoLink: String
+    websiteLink: String
+    githubLink: String
     currentMatchingAmount: Int!
     contributorCount: Int!
     contributionsTotal: Int!
@@ -19,19 +21,22 @@ export const schema = gql`
   type Query {
     projects: [Project!]!
     project(id: Int!): Project
+    queryProjectsFromOSC: [Project]
   }
 
   input CreateProjectInput {
     name: String!
-    ownerEmail: String!
+    collectiveId: Int!
+    ownerEmail: String
     logo: String!
     shortDescription: String!
-    longDescription: String!
-    coverImage: String!
-    stripeId: String!
-    goalAmount: Int!
-    videoLink: String!
-    websiteLink: String!
+    longDescription: String
+    coverImage: String
+    stripeId: String
+    goalAmount: Int
+    videoLink: String
+    websiteLink: String
+    githubLink: String
     currentMatchingAmount: Int!
     contributorCount: Int!
     contributionsTotal: Int!

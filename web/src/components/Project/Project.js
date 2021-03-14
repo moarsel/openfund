@@ -1,11 +1,12 @@
 import { navigate, routes } from '@redwoodjs/router'
 import { useState } from 'react'
 import { useCart } from 'src/components/Cart/CartContext'
+import BasicLayout from 'src/layouts/BasicLayout/BasicLayout'
 import { currency } from 'src/utils'
 import { Body, FormField, Lead, PageHeading, TextField } from '../UI'
 import { Button } from '../UI/Button/Button'
 import { Card } from '../UI/Card/Card'
-import { ContributionBar } from '../UI/ContributionBar/ContributionBar'
+import { GitHub, Globe } from 'react-feather'
 import { SocialShare } from '../UI/SocialShare/SocialShare'
 
 const Project = ({ project, endDate }) => {
@@ -32,128 +33,144 @@ const Project = ({ project, endDate }) => {
   }
 
   return (
-    <div className="relative grid grid-cols-1 gap-4 lg:grid-cols-3 justify-items-auto">
-      <div className="col-span-2">
-        <PageHeading>{project.name} </PageHeading>
-        <Lead>{project.shortDescription}</Lead>
-        {project.websiteLink && (
-          <Body withMargins>
-            Learn more at the{' '}
-            <a href={project.websiteLink} className="underline">
-              project website
-            </a>
-            .
-          </Body>
-        )}
-        <img
-          src={project.coverImage}
-          alt="project image"
-          className="w-full"
-          width="100%"
-          height="100%"
-        />
-        <SocialShare className="justify-end">Share</SocialShare>
-        <Body withMargins>{project.longDescription}</Body>
-
-        {project.videoLink && (
-          <div className="mt-5 embed-responsive aspect-ratio-4/3">
-            <iframe
-              className="embed-responsive-item"
-              src={project.videoLink}
-              frameBorder="0"
-            ></iframe>
+    <BasicLayout>
+      <div className="relative grid grid-cols-1 gap-4 lg:grid-cols-3 justify-items-auto">
+        <div className="col-span-2">
+          <PageHeading>{project.name} </PageHeading>
+          <Lead withMargins>{project.shortDescription}</Lead>
+          <div className="flex flex-row mt-3 mb-6">
+            {project.websiteLink && (
+              <a
+                href={project.websiteLink}
+                className="flex flex-row items-center mr-4 text-sm hover:underline text-purple"
+                title={project.name + ' homepage'}
+              >
+                <Globe className="mr-2" />
+                Website
+              </a>
+            )}
+            {project.githubLink && (
+              <a
+                href={`https//:github.com/${project.githubLink}`}
+                title={project.name + ' github'}
+                className="flex flex-row items-center text-sm hover:underline text-purple"
+              >
+                <GitHub className="mr-2" />
+                Github
+              </a>
+            )}
           </div>
-        )}
-      </div>
-      <Card className="sticky self-start shadow-lg" style={{ top: '3rem' }}>
-        <ContributionBar
-          contributionsTotal={project.contributionsTotal}
-          currentMatchingAmount={project.currentMatchingAmount}
-          goalAmount={project.goalAmount}
-        />
-        <div className="p-6">
-          <Body as="div" className="mb-1">
-            <Lead as="h3" className="mb-1">
-              {isRoundCurrent ? 'Your Contribution' : 'Contributions'}
-            </Lead>
-            <strong>{project.contributorCount}</strong> people have raised{' '}
-            <strong>{currency(project.contributionsTotal)}</strong>. That
-            unlocks <strong>{currency(project.currentMatchingAmount)}</strong>{' '}
-            of matching funds.
-          </Body>
-          {isRoundCurrent && (
-            <Body>
-              Will you help them reach their{' '}
-              <strong>{currency(project.goalAmount)}</strong> goal by{' '}
-              <strong>
-                {new Date(endDate).toLocaleDateString('en-US', {
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </strong>
-              ?
-            </Body>
+          {project.coverImage && (
+            <img
+              src={project.coverImage}
+              alt="project image"
+              className="w-full"
+              width="100%"
+              height="100%"
+            />
+          )}
+          <Body
+            className="content"
+            withMargins
+            dangerouslySetInnerHTML={{ __html: project.longDescription }}
+          ></Body>
+
+          {project.videoLink && (
+            <div className="mt-5 embed-responsive aspect-ratio-4/3">
+              <iframe
+                className="embed-responsive-item"
+                src={project.videoLink}
+                frameBorder="0"
+              ></iframe>
+            </div>
           )}
         </div>
-        {isRoundCurrent && (
-          <form onSubmit={() => handleSubmit(amount)} className="m-6">
-            <FormField
-              as="fieldset"
-              label="Amount (USD)"
-              className="flex flex-wrap items-end justify-start"
-            >
-              <div className="w-24 mr-2">
-                <TextField
-                  type="number"
-                  name="amount"
-                  value={amount / 100}
-                  onChange={(e) => setAmount(e.target.value * 100)}
-                  className="input-field"
-                  required
-                  min="5"
-                />
-              </div>
-              <div className="mt-2">
-                <Button
-                  className={`w-12 mr-2 ${
-                    amount === 2000 ? ' bg-gray-100' : ''
-                  }`}
-                  variant="secondary"
-                  aria-pressed={amount === 2000}
-                  onClick={() => setAmount(2000)}
-                >
-                  $20
-                </Button>
-                <Button
-                  className={`w-12 mr-2 ${
-                    amount === 5000 ? ' bg-gray-100' : ''
-                  }`}
-                  variant="secondary"
-                  aria-pressed={amount === 5000}
-                  onClick={() => setAmount(5000)}
-                >
-                  $50
-                </Button>
-                <Button
-                  className={`w-12 mr-2 ${
-                    amount === 10000 ? ' bg-gray-100' : ''
-                  }`}
-                  aria-pressed={amount === 10000}
-                  variant="secondary"
-                  onClick={() => setAmount(10000)}
-                >
-                  $100
-                </Button>
-              </div>
-            </FormField>
+        <Card className="sticky self-start shadow-lg" style={{ top: '3rem' }}>
+          <div className="p-6">
+            <Body as="div" className="mb-1">
+              <Lead as="h3" className="mb-1">
+                {isRoundCurrent ? 'Your Contribution' : 'Contributions'}
+              </Lead>
+              <strong>{project.contributorCount}</strong> people have raised{' '}
+              <strong>{currency(project.contributionsTotal)}</strong>. That
+              unlocks <strong>{currency(project.currentMatchingAmount)}</strong>{' '}
+              of matching funds.
+            </Body>
+            {isRoundCurrent && (
+              <Body>
+                Will you help them reach their{' '}
+                <strong>{currency(project.goalAmount)}</strong> goal by{' '}
+                <strong>
+                  {new Date(endDate).toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </strong>
+                ?
+              </Body>
+            )}
+          </div>
+          {isRoundCurrent && (
+            <form onSubmit={() => handleSubmit(amount)} className="m-6">
+              <FormField
+                as="fieldset"
+                label="Amount (USD)"
+                className="flex flex-wrap items-end justify-start"
+              >
+                <div className="w-24 mr-2">
+                  <TextField
+                    type="number"
+                    name="amount"
+                    value={amount / 100}
+                    onChange={(e) => setAmount(e.target.value * 100)}
+                    className="input-field"
+                    required
+                    min="5"
+                  />
+                </div>
+                <div className="mt-2">
+                  <Button
+                    className={`w-12 mr-2 ${
+                      amount === 2000 ? ' bg-gray-100' : ''
+                    }`}
+                    variant="secondary"
+                    aria-pressed={amount === 2000}
+                    onClick={() => setAmount(2000)}
+                  >
+                    $20
+                  </Button>
+                  <Button
+                    className={`w-12 mr-2 ${
+                      amount === 5000 ? ' bg-gray-100' : ''
+                    }`}
+                    variant="secondary"
+                    aria-pressed={amount === 5000}
+                    onClick={() => setAmount(5000)}
+                  >
+                    $50
+                  </Button>
+                  <Button
+                    className={`w-12 mr-2 ${
+                      amount === 10000 ? ' bg-gray-100' : ''
+                    }`}
+                    aria-pressed={amount === 10000}
+                    variant="secondary"
+                    onClick={() => setAmount(10000)}
+                  >
+                    $100
+                  </Button>
+                </div>
+              </FormField>
 
-            <Button type="submit" className="my-4">
-              Contribute {currency(amount)}
-            </Button>
-          </form>
-        )}
-      </Card>
-    </div>
+              <Button type="submit" className="my-4">
+                Contribute {currency(amount)}
+              </Button>
+            </form>
+          )}
+          <SocialShare className="justify-end mr-4">Share</SocialShare>
+        </Card>
+      </div>
+    </BasicLayout>
   )
 }
 

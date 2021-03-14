@@ -153,3 +153,25 @@
   padding-bottom: 75%;
 }
 
+/* global */
+
+.content p {
+  margin-bottom: 1rem;
+}
+
+.content h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.content li {
+  @apply list-disc;
+}
+.content ul {
+  @apply mb-6 ml-6;
+}
