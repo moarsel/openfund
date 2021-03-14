@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const request = require('graphql-request')
 
 dotenv.config()
+
 const db = new PrismaClient()
 
 async function main() {
